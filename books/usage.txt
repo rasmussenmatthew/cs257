@@ -1,0 +1,13 @@
+python3 books.py contains [options] "string"
+
+    contains -a
+    ~ prints a list of every author who contains given search string 
+    ~ print a list of each author's books
+    
+    
+    contains -t
+    ~ prints a list of every book whose title contains given string string 
+    
+python3 books.py between "string"
+    ~ prints a list of every book published between input year A and B, inclusive
+    
