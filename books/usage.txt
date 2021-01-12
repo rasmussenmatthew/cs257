@@ -1,13 +1,44 @@
-python3 books.py contains [options] "string"
+#Eric Gassel and Matthew Rasmussen 
 
-    contains -a
-     ~prints a list of every author who contains given search string 
-     ~print a list of each author's books
+Synopsis:
+    python3 books.py --authors [string]
+    python3 books.py --titles [string]
+    python3 books.py --years [integer A] [integer B]
+    python3 books.py --help
+
+Description:
+    --authors, -a   prints a list of every author who contains given search string and prints a list of each author's books
+    --titles, -t    prints a list of every book whose title contains given string string 
+    --years, -y     prints a list of every book published between input year A and B, inclusive
+    --help          shows help message
     
     
-    contains -t
-     ~prints a list of every book whose title contains given string string 
-    
-python3 books.py between "string"
-    ~ prints a list of every book published between input year A and B, inclusive
-    
+Examples:
+    --authors jane 
+        Print out any author's name which contains "jane", printing out a list of their books on the line below. 
+        
+        Jane Austion
+            [Pride and Prejudice, ... ]
+        Jane Goodall 
+            [Book, ...]
+            
+    --authors "jane austin"
+        This method searches for authors containing the full string within the quotes.
+        
+    --titles pride 
+        Prints out any title containing "pride" as a list.
+        
+        Pride and Prejudice
+        The Lion's Pride
+        ... 
+        
+    --titles "pride and"
+        This method searches for any book conating the full string within the quotes.
+        
+    --years 1900 1950
+        Prints out any books published between the two dates (inclusively) line by line.
+        
+        book
+        book
+        book
+        ... 
