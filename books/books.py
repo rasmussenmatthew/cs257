@@ -40,6 +40,6 @@ def help1():
 
 def main():
     print("hello")
-    authors(Jane)
+    authors("Jane")
 main()
 
