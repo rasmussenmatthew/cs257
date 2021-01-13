@@ -9,7 +9,6 @@ with open('books.csv') as csv_file:
     csv_reader= csv.reader(csv_file, delimiter=',')
     #filling the dictionary to connect a list of books to each author
     for row in csv_reader:
-        print("1")
         if row[2] not in author_dict: #no repeats
             author_dict[row[2]] = [row[0]]
         else:
@@ -18,9 +17,8 @@ with open('books.csv') as csv_file:
     
 def authors(name): #authors command
     for key in author_dict:
-        print("2")
         author= str(key) #jic key is not string 
-        if lower(name) in lower(author):
+        if name.lower() in author.lower():
             print("-",author)
             print("   ",author_dict[key])
     return
