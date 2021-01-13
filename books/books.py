@@ -12,7 +12,7 @@ with open('books.csv') as csv_file:
         if row[2] not in author_dict: #no repeats
             author_dict[row[2]] = [row[0]]
         else:
-            author_dict[row(2)].append(row[0])
+            author_dict[row[2]].append(row[0])
 
     
 def authors(name): #authors command
