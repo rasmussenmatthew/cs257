@@ -16,7 +16,7 @@ with open('books.csv') as csv_file:
 
     
 def authors(name): #authors command
-    for key in author_dict[]:
+    for key in author_dict{}:
         author= str(key) #jic key is not string 
         if lower(name) in lower(author):
             print("-",author)
