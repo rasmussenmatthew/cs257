@@ -1,3 +1,4 @@
+#Eric Gassel & Matthew Rasmussen (obviously not finished)
 def main():
     print("hello")
 main()
@@ -9,4 +10,3 @@ def years(year1, year2):
     #names command
 def help1():
     #print statement TBD
-#NICE
