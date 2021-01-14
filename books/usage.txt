@@ -18,9 +18,9 @@ Examples:
         Print out any author's name which contains "jane", printing out a list of their books on the line below. 
         
         Jane Austion
-            [Pride and Prejudice, ... ]
-        Jane Goodall 
-            [Book, ...]
+            Emma
+            Pride and Prejudice 
+            Sense and Sensibility
             
     --authors "jane austin"
         This method searches for authors containing the full string within the quotes.

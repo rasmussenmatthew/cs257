@@ -23,7 +23,8 @@ def authors(name): #authors command
             print("-",author)
             keyList = author_dict[key]
             for i in range(len(author_dict[key])):
-                print("   ", keyList[i])
+                print("    ", keyList[i])
+            print("             ")
     return
 
 def titles(name): #titles command
@@ -42,6 +43,7 @@ def help1(): #print statement TBD
 
 def main():
     print("hello")
-    authors("Jane")
+    #authors("Jane")
+    authors("e")
 main()
 
