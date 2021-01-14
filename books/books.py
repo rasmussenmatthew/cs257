@@ -1,6 +1,7 @@
 #Eric Gassel & Matthew Rasmussen 
 
 import csv
+import argparse
 
 author_dict = {} 
 
@@ -24,17 +25,18 @@ def authors(name): #authors command
     return
 
 def titles(name): #titles command
+    #idea: still use the dictionary, look through each key's list and if title matches, then print title with author's name
+        #ex: --title pride and 
+            #-Pride and Prejudice by Jane Austin
+    #could also not include title but I thought we'd make decent use of dictionary
     return true
 
-def years(year1, year2):
-    #names command
+def years(year1, year2): #years command: also print our year with the book
     return true
 
-def help1():
-    #print statement TBD
+def help1(): #print statement TBD
     return true
 
-#NICE
 
 def main():
     print("hello")
