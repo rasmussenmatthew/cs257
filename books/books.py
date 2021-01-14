@@ -10,6 +10,7 @@ parser.add_argument('-t', '--titles', type = str, metavar='', help = 'prints a l
 
 parser.add_argument('-y', '--years', type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
 
+args = parser.parse_args()
 
 author_dict = {} 
 
@@ -24,10 +25,10 @@ with open('books.csv') as csv_file:
             author_dict[row[2]].append(row[0])
 
     
-def authors(name): #authors command
+def findAuthors(authors): #authors command
     for key in author_dict:
         author= str(key) #jic key is not string 
-        if name.lower() in author.lower():
+        if authors.lower() in author.lower():
             print("-",author)
             keyList = author_dict[key]
             for i in range(len(author_dict[key])):
@@ -35,15 +36,15 @@ def authors(name): #authors command
             print("             ")
     return
 
-def titles(name): #titles command
+def findTitles(titles): #titles command
     with open('books.csv') as csv_file:
         csv_reader= csv.reader(csv_file, delimiter=',')
         for row in csv_reader: 
-            if name.lower() in row[0].lower():
+            if titles.lower() in row[0].lower():
                 print(row[0])
     return 
 
-def years(year1, year2): #years command: also print our year with the book
+def findYears(year1, year2): #years command: also print our year with the book
     with open('books.csv') as csv_file:
         csv_reader= csv.reader(csv_file, delimiter=',')
         for row in csv_reader: 
@@ -51,17 +52,19 @@ def years(year1, year2): #years command: also print our year with the book
                 print(row[0], "-", row[1])
     return
 
-def help1(): #print statement TBD
-    return true
 
+if __name__ == "__main__":
+    findAuthors(args.authors)
+    #findTitles(args.titles)
+    #findYears(args.year1, args.year2)
 
-def main():
-    print("hello")
-    authors("Jane")
+#def main():
+    #print("hello")
+    #authors("Jane")
     #authors("e")
-    titles("pride")
+    #titles("pride")
     #titles("the")
     #titles("and t")
-    years(1950, 1990)
-main()
+    #years(1950, 1990)
+#main()
 

@@ -10,7 +10,7 @@ Description:
     --authors, -a   prints a list of every author who contains given search string and prints a list of each author's books
     --titles, -t    prints a list of every book whose title contains given string
     --years, -y     prints a list of every book published between input year A and B, inclusive
-    --help          shows help message
+    --help, -h      shows help message
     
     
 Examples:
@@ -28,7 +28,7 @@ Examples:
     --titles pride 
         Prints out any title containing "pride" as a list.
         
-        Pride and Prejudice
+        Pride and Prejudice  FIX EXAMPLES
         The Lion's Pride
         ... 
         
@@ -39,6 +39,6 @@ Examples:
         Prints out any books published between the two dates (inclusively) line by line.
         
         book
-        book
+        book        FIX EXAMPLES
         book
         ... 
