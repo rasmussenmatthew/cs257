@@ -8,7 +8,7 @@ parser.add_argument('-a', '--authors', type = str, metavar='', help = 'prints a 
 
 parser.add_argument('-t', '--titles', type = str, metavar='', help = 'prints a list of every book whose title contains given string')
 
-parser.add_argument('-y', '--years', type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
+parser.add_argument('-y', '--years', nargs = 2, type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
 
 args = parser.parse_args()
 
@@ -44,27 +44,19 @@ def findTitles(titles): #titles command
                 print(row[0])
     return 
 
-def findYears(year1, year2): #years command: also print our year with the book
+def findYears(years): #years command: also print our year with the book
     with open('books.csv') as csv_file:
         csv_reader= csv.reader(csv_file, delimiter=',')
         for row in csv_reader: 
-            if int(row[1]) >= year1 and int(row[1]) <= year2:
+            if int(row[1]) >= years[0] and int(row[1]) <= years[1]:
                 print(row[0], "-", row[1])
     return
 
 
 if __name__ == "__main__":
-    findAuthors(args.authors)
+    #findAuthors(args.authors)
     #findTitles(args.titles)
-    #findYears(args.year1, args.year2)
+    #findYears(args.years)
 
-#def main():
-    #print("hello")
-    #authors("Jane")
-    #authors("e")
-    #titles("pride")
-    #titles("the")
-    #titles("and t")
-    #years(1950, 1990)
-#main()
+
 
