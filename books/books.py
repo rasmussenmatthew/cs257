@@ -21,7 +21,9 @@ def authors(name): #authors command
         author= str(key) #jic key is not string 
         if name.lower() in author.lower():
             print("-",author)
-            print("   ",author_dict[key])
+            keyList = author_dict[key]
+            for i in range(len(author_dict[key])):
+                print("   ", keyList[i])
     return
 
 def titles(name): #titles command
