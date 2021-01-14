@@ -3,6 +3,14 @@
 import csv
 import argparse
 
+parser = argparse.ArgumentParser(description = 'Multiple ways to search through a csv file of authors and their books')
+parser.add_argument('-a', '--authors', type = str, metavar='', help = 'prints a list of every author who contains given search string and prints a list of each author\'s books')
+
+parser.add_argument('-t', '--titles', type = str, metavar='', help = 'prints a list of every book whose title contains given string')
+
+parser.add_argument('-y', '--years', type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
+
+
 author_dict = {} 
 
 #reading in csv file
