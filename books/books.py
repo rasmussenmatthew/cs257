@@ -28,14 +28,20 @@ def authors(name): #authors command
     return
 
 def titles(name): #titles command
-    #idea: still use the dictionary, look through each key's list and if title matches, then print title with author's name
-        #ex: --title pride and 
-            #-Pride and Prejudice by Jane Austin
-    #could also not include title but I thought we'd make decent use of dictionary
-    return true
+    with open('books.csv') as csv_file:
+        csv_reader= csv.reader(csv_file, delimiter=',')
+        for row in csv_reader: 
+            if name.lower() in row[0].lower():
+                print(row[0])
+    return 
 
 def years(year1, year2): #years command: also print our year with the book
-    return true
+    with open('books.csv') as csv_file:
+        csv_reader= csv.reader(csv_file, delimiter=',')
+        for row in csv_reader: 
+            if int(row[1]) >= year1 and int(row[1]) <= year2:
+                print(row[0], "-", row[1])
+    return
 
 def help1(): #print statement TBD
     return true
@@ -43,7 +49,11 @@ def help1(): #print statement TBD
 
 def main():
     print("hello")
-    #authors("Jane")
-    authors("e")
+    authors("Jane")
+    #authors("e")
+    titles("pride")
+    #titles("the")
+    #titles("and t")
+    years(1950, 1990)
 main()
 
