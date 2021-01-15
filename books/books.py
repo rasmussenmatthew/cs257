@@ -3,15 +3,16 @@
 import csv
 import argparse
 
+#setting up parser and arguments 
 parser = argparse.ArgumentParser(description = 'Multiple ways to search through a csv file of authors and their books')
+
 parser.add_argument('-a', '--authors', type = str, metavar='', help = 'prints a list of every author who contains given search string and prints a list of each author\'s books')
-
 parser.add_argument('-t', '--titles', type = str, metavar='', help = 'prints a list of every book whose title contains given string')
-
 parser.add_argument('-y', '--years', nargs = 2, type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
 
 args = parser.parse_args()
 
+#implementing new dictionary to be filled below 
 author_dict = {} 
 
 #reading in csv file
@@ -27,13 +28,13 @@ with open('books.csv') as csv_file:
     
 def findAuthors(authors): #authors command
     for key in author_dict:
-        author= str(key) #jic key is not string 
+        author= str(key) #changing author (including lifespans) to string
         if authors.lower() in author.lower():
-            print("-",author)
+            print("-",author) #for spacing 
             keyList = author_dict[key]
             for i in range(len(author_dict[key])):
                 print("    ", keyList[i])
-            print("             ")
+            print("             ") #for spacing
     return
 
 def findTitles(titles): #titles command
@@ -41,22 +42,37 @@ def findTitles(titles): #titles command
         csv_reader= csv.reader(csv_file, delimiter=',')
         for row in csv_reader: 
             if titles.lower() in row[0].lower():
-                print(row[0])
+                print(row[0])    
+    print("             ") #for spacing 
     return 
 
-def findYears(years): #years command: also print our year with the book
+def findYears(years): #years command: also prints out publish year of book
+    if years[0] > years[1]: #ordering years so the smaller comes first
+        yearsA = years[0]
+        yearsB = years[1]
+    else:                   
+        yearsB = years[0]
+        yearsA = years[1]
+        
     with open('books.csv') as csv_file:
         csv_reader= csv.reader(csv_file, delimiter=',')
         for row in csv_reader: 
-            if int(row[1]) >= years[0] and int(row[1]) <= years[1]:
+            if int(row[1]) >= yearsB and int(row[1]) <= yearsA:
                 print(row[0], "-", row[1])
+    print("             ") #for spacing 
     return
 
+def main():
+    #if statments to see which function is being used
+    if args.authors != None:
+        findAuthors(args.authors)
+    if args.titles != None:
+        findTitles(args.titles)
+    if args.years != None:
+        findYears(args.years)
 
 if __name__ == "__main__":
-    findAuthors(args.authors)
-    findTitles(args.titles)
-    findYears(args.years)
+    main()
 
 
 

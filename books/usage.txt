@@ -12,12 +12,14 @@ Description:
     --years, -y     prints a list of every book published between input year A and B, inclusive
     --help, -h      shows help message
     
+Note:
+    For any use of the --authors (-a) or --titles (-t) flags followed by an input with a space must be enclosed in quotes. 
     
 Examples:
     --authors jane 
         Print out any author's name which contains "jane", printing out a list of their books on the line below. 
         
-        Jane Austion
+        - Jane Austion
             Emma
             Pride and Prejudice 
             Sense and Sensibility
@@ -25,20 +27,19 @@ Examples:
     --authors "jane austin"
         This method searches for authors containing the full string within the quotes.
         
-    --titles pride 
-        Prints out any title containing "pride" as a list.
+    --titles to 
+        Prints out any title containing "to" subsequently. 
         
-        Pride and Prejudice  FIX EXAMPLES
-        The Lion's Pride
+        Leave it to Psmith
+        To Say Nothing of the Dog
         ... 
         
     --titles "pride and"
         This method searches for any book conating the full string within the quotes.
         
-    --years 1900 1950
-        Prints out any books published between the two dates (inclusively) line by line.
+    --years 1950 1970
+        Prints out any books published between the two dates (inclusively) subsequently.
         
-        book
-        book        FIX EXAMPLES
-        book
-        ... 
+        The Fire Next Time - 1963
+        One Hundred Years of Solitude - 1967
+        ...  
