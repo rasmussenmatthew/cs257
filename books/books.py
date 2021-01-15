@@ -9,6 +9,8 @@ parser = argparse.ArgumentParser(description = 'Multiple ways to search through 
 parser.add_argument('-a', '--authors', type = str, metavar='', help = 'prints a list of every author who contains given search string and prints a list of each author\'s books')
 parser.add_argument('-t', '--titles', type = str, metavar='', help = 'prints a list of every book whose title contains given string')
 parser.add_argument('-y', '--years', nargs = 2, type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
+parser.add_argument('-u', '--usage', action= 'store_true', help = 'prints the entire usage statement')
+
 
 args = parser.parse_args()
 
@@ -79,6 +81,14 @@ def findYears(years): #years command: also prints out publish year of book
     print("             ") #for spacing 
     return
 
+def printUsage():
+    usageFile = open("usage.txt", "r")
+    usageContent = usageFile.read()
+    print(usageContent)
+    usageFile.close()
+    print("    ")
+    return
+
 def main():
     #if statments to see which function is being used
     if args.authors != None:
@@ -87,6 +97,8 @@ def main():
         findTitles(args.titles)
     if args.years != None:
         findYears(args.years)
+    if args.usage == True:
+        printUsage()
 
 if __name__ == "__main__":
     main()
