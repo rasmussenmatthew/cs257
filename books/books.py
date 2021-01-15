@@ -54,9 +54,9 @@ def findYears(years): #years command: also print our year with the book
 
 
 if __name__ == "__main__":
-    #findAuthors(args.authors)
-    #findTitles(args.titles)
-    #findYears(args.years)
+    findAuthors(args.authors)
+    findTitles(args.titles)
+    findYears(args.years)
 
 
 
