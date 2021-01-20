@@ -19,7 +19,8 @@ def get_parsed_arguments():
 
     
 def find_authors(authors): 
-    ''' what it do           '''
+    '''Returns a dictionary of all authors that contain the search string along with a list of their books.'''
+    
     #implementing new dictionary to be filled below 
     author_dict = {} 
 
@@ -32,76 +33,100 @@ def find_authors(authors):
                 author_dict[row[2]] = [row[0]]
             else:
                 author_dict[row[2]].append(row[0])
-                
-    counter = 0        
-    for key in author_dict: #looping through dictionary
-        author= str(key) #changing author (including lifespans) to string
-        if authors.lower() in author.lower():
-            counter += 1
-            print("-",author) #for spacing 
-            key_list = author_dict[key]
-            for i in range(len(author_dict[key])):
-                print(" " * 5, key_list[i])
-
-    if counter == 0:
-        print("There is no author whose name conatins the given string.")
-        print(" " * 10) #for spacing
-    return
+    
+    return author_dict
 
 def find_titles(titles): 
-    ''' what it do           '''
-    counter = 0 
+    '''Returns a list of all titles that contain the search string along with its author and publish year.'''
+    
+    titles_list = []
     with open('books.csv') as csv_file:
         csv_reader= csv.reader(csv_file, delimiter=',')
         for row in csv_reader: 
             if titles.lower() in row[0].lower():
-                counter += 1
-                print(row[0], "written by", row[2], "in", row[1], "\n")    
+                temp_list=[row[0],row[2],row[1]]
+                titles_list.append(temp_list)    
                 
-    if counter == 0: #message to user if no books are found
-        print("There is no book whose title contains the given string.")
-    print(" " * 10) #for spacing 
-    return 
+    return titles_list
 
 def find_years(years): 
-    ''' what it do           '''
+    '''Returns a list of all books that were published between the search years along with its author.'''
+    
     if years[0] > years[1]: #ordering years so the smaller comes first
         years_small = years[1]
         years_big = years[0]
     else:                   
         years_big = years[1]
         years_small = years[0]
-        
-    counter = 0 
+
     with open('books.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
             book_year = int(row[1])
             if book_year >= years_small and book_year <= years_big:
-                counter += 1
-                print(row[0], "written by", row[2], "in", row[1], "\n")
+                temp_list=[row[0],row[2],row[1]]
+                publish_list.append(temp_list) 
                 
-    if counter == 0:#message to user if no books are found
-        print("There are no books between the given years")
-    print(" " * 10) #for spacing 
-    return
+    return publish_list
 
 def print_usage():
-    ''' what it do           '''
     with open("usage.txt") as usage_file:
         for line in usage_file:
             print(line)
+            
+    return
+
+def print_search_results(results, args):
+    
+    if args.authors != None:
+        counter = 0
+        author_dict = results
+        for key in author_dict: #looping through dictionary
+            author= str(key) #changing author (including lifespans) to string
+            if authors.lower() in author.lower():
+                counter += 1
+                print("-",author) #for spacing 
+                key_list = author_dict[key]
+                for i in range(len(author_dict[key])):
+                    print(" " * 5, key_list[i])
+                print("")
+        if counter == 0:
+            print("There is no author whose name conatins the given string. \n")
+        
+        
+    if args.titles != None:
+        titles_list = results
+        if not titles_list:
+            print("There is no book whose title contains the given string. \n") 
+        else:
+            for book_info in titles_list:
+                title = book_info[0]
+                author = book_info[1]
+                pub_year = book_info[2]
+                print(title, ", written by", author, " (", pub_year, ")" "\n")
+            
+    if args.years != None:
+        publish_list = results
+        if not publish_list:
+            print("There is no book whose published year is within your search years. \n") 
+        else:
+            for book_info in publish_list:
+                title = book_info[0]
+                author = book_info[1]
+                pub_year = book_info[2]
+                print(title, ", written by", author, " (", pub_year, ")" "\n")
+                
     return
 
 def main():
     args = get_parsed_arguments()
     #if statments to see which function is being used
     if args.authors != None:
-        find_authors(args.authors)
+        print_search_result(find_authors(args.authors), args)
     if args.titles != None:
-        find_titles(args.titles)
+        print_search_result(find_titles(args.titles), args)
     if args.years != None:
-        find_years(args.years)
+        print_search_result(find_years(args.years), args)
     if args.usage:
         print_usage()
 
