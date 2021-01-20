@@ -52,6 +52,8 @@ def find_titles(titles):
 def find_years(years): 
     '''Returns a list of all books that were published between the search years along with its author.'''
     
+    publish_list = []
+    
     if years[0] > years[1]: #ordering years so the smaller comes first
         years_small = years[1]
         years_big = years[0]
@@ -80,10 +82,11 @@ def print_search_results(results, args):
     
     if args.authors != None:
         counter = 0
+        search_author = str(args.authors).lower()
         author_dict = results
         for key in author_dict: #looping through dictionary
             author= str(key) #changing author (including lifespans) to string
-            if authors.lower() in author.lower():
+            if search_author in author.lower():
                 counter += 1
                 print("-",author) #for spacing 
                 key_list = author_dict[key]
@@ -103,7 +106,7 @@ def print_search_results(results, args):
                 title = book_info[0]
                 author = book_info[1]
                 pub_year = book_info[2]
-                print(title, ", written by", author, " (", pub_year, ")" "\n")
+                print(title,"(", pub_year, "), written by", author, "\n")
             
     if args.years != None:
         publish_list = results
@@ -114,7 +117,7 @@ def print_search_results(results, args):
                 title = book_info[0]
                 author = book_info[1]
                 pub_year = book_info[2]
-                print(title, ", written by", author, " (", pub_year, ")" "\n")
+                print(title,"(", pub_year, "), written by", author, "\n")
                 
     return
 
@@ -122,11 +125,11 @@ def main():
     args = get_parsed_arguments()
     #if statments to see which function is being used
     if args.authors != None:
-        print_search_result(find_authors(args.authors), args)
+        print_search_results(find_authors(args.authors), args)
     if args.titles != None:
-        print_search_result(find_titles(args.titles), args)
+        print_search_results(find_titles(args.titles), args)
     if args.years != None:
-        print_search_result(find_years(args.years), args)
+        print_search_results(find_years(args.years), args)
     if args.usage:
         print_usage()
 
