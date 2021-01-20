@@ -15,7 +15,8 @@ parser.add_argument('-u', '--usage', action= 'store_true', help = 'prints the en
 args = parser.parse_args()
 
     
-def findAuthors(authors): #authors command
+def find_authors(authors): 
+    ''' what it do           '''
     #implementing new dictionary to be filled below 
     author_dict = {} 
 
@@ -35,16 +36,17 @@ def findAuthors(authors): #authors command
         if authors.lower() in author.lower():
             counter += 1
             print("-",author) #for spacing 
-            keyList = author_dict[key]
+            key_list = author_dict[key]
             for i in range(len(author_dict[key])):
-                print("    ", keyList[i])
+                print("    ", key_list[i])
             print("             ") #for spacing
     if counter == 0:
         print("There is no author whose name conatins the given string")
         print("             ") #for spacing
     return
 
-def findTitles(titles): #titles command
+def find_titles(titles): 
+    ''' what it do           '''
     counter = 0 
     with open('books.csv') as csv_file:
         csv_reader= csv.reader(csv_file, delimiter=',')
@@ -59,19 +61,20 @@ def findTitles(titles): #titles command
     print("             ") #for spacing 
     return 
 
-def findYears(years): #years command: also prints out publish year of book
+def find_years(years): 
+    ''' what it do           '''
     if years[0] > years[1]: #ordering years so the smaller comes first
-        yearsA = years[0]
-        yearsB = years[1]
+        years_small = years[1]
+        years_big = years[0]
     else:                   
-        yearsB = years[0]
-        yearsA = years[1]
+        years_big = years[1]
+        years_small = years[0]
         
     counter = 0 
     with open('books.csv') as csv_file:
-        csv_reader= csv.reader(csv_file, delimiter=',')
+        csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader: 
-            if int(row[1]) >= yearsB and int(row[1]) <= yearsA:
+            if int(row[1]) >= years_big and int(row[1]) <= years_small:
                 counter += 1
                 print(row[0], "written by", row[2], "in", row[1])
                 print("             ") #for spacing 
@@ -81,12 +84,17 @@ def findYears(years): #years command: also prints out publish year of book
     print("             ") #for spacing 
     return
 
-def printUsage():
-    usageFile = open("usage.txt", "r")
-    usageContent = usageFile.read()
-    print(usageContent)
-    usageFile.close()
-    print("    ")
+def print_usage():
+    ''' what it do           '''
+    with open("usage.txt") as usage_file:
+        print(usage_file)
+    
+    
+    #usage_file = open("usage.txt", "r")
+    #usage_content = usageFile.read()
+    #print(usageContent)
+    #usageFile.close()
+    #print("    ")
     return
 
 def main():
