@@ -38,11 +38,11 @@ def find_authors(authors):
             print("-",author) #for spacing 
             key_list = author_dict[key]
             for i in range(len(author_dict[key])):
-                print("    ", key_list[i])
-            print("             ") #for spacing
+                print("" * 5, key_list[i])
+            print("" * 10) #for spacing
     if counter == 0:
-        print("There is no author whose name conatins the given string")
-        print("             ") #for spacing
+        print("There is no author whose name conatins the given string.")
+        print("" * 10) #for spacing
     return
 
 def find_titles(titles): 
@@ -54,11 +54,11 @@ def find_titles(titles):
             if titles.lower() in row[0].lower():
                 counter += 1
                 print(row[0], "written by", row[2], "in", row[1])    
-                print("             ") #for spacing 
+                print("" * 10) #for spacing 
                 
     if counter == 0: #message to user if no books are found
         print("There is no book whose title contains the given string.")
-    print("             ") #for spacing 
+    print("" * 10) #for spacing 
     return 
 
 def find_years(years): 
@@ -78,11 +78,11 @@ def find_years(years):
             if book_year >= years_small and book_year <= years_big:
                 counter += 1
                 print(row[0], "written by", row[2], "in", row[1])
-                print("             ") #for spacing 
+                print("" * 10) #for spacing 
                 
     if counter == 0:#message to user if no books are found
         print("There are no books between the given years")
-    print("             ") #for spacing 
+    print("" * 10) #for spacing 
     return
 
 def print_usage():
@@ -90,13 +90,6 @@ def print_usage():
     with open("usage.txt") as usage_file:
         for line in usage_file:
             print(line)
-    
-    
-    #usage_file = open("usage.txt", "r")
-    #usage_content = usageFile.read()
-    #print(usageContent)
-    #usageFile.close()
-    #print("    ")
     return
 
 def main():
