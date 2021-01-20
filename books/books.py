@@ -88,7 +88,8 @@ def find_years(years):
 def print_usage():
     ''' what it do           '''
     with open("usage.txt") as usage_file:
-        print(usage_file)
+        for line in usage_file:
+            print(line)
     
     
     #usage_file = open("usage.txt", "r")
