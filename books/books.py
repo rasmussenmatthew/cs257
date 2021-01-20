@@ -73,8 +73,9 @@ def find_years(years):
     counter = 0 
     with open('books.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        for row in csv_reader: 
-            if int(row[1]) >= years_big and int(row[1]) <= years_small:
+        for row in csv_reader:
+            book_year = int(row[1])
+            if book_year >= years_small and book_year <= years_big:
                 counter += 1
                 print(row[0], "written by", row[2], "in", row[1])
                 print("             ") #for spacing 
@@ -100,13 +101,13 @@ def print_usage():
 def main():
     #if statments to see which function is being used
     if args.authors != None:
-        findAuthors(args.authors)
+        find_authors(args.authors)
     if args.titles != None:
-        findTitles(args.titles)
+        find_titles(args.titles)
     if args.years != None:
-        findYears(args.years)
-    if args.usage == True:
-        printUsage()
+        find_years(args.years)
+    if args.usage:
+        print_usage()
 
 if __name__ == "__main__":
     main()
