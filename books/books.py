@@ -9,7 +9,7 @@ def get_parsed_arguments():
     
     parser = argparse.ArgumentParser(description = 'Multiple ways to search through a csv file of authors and their books')
 
-    parser.add_argument('-a', '--authors', type = str, metavar='', help = 'prints a list of every author who contains given search string and prints a list of each author\'s books')
+    parser.add_argument('-a', '--authors', type = str, metavar=' ', help = 'prints a list of every author who contains given search string and prints a list of each author\'s books')
     parser.add_argument('-t', '--titles', type = str, metavar='', help = 'prints a list of every book whose title contains given string')
     parser.add_argument('-y', '--years', nargs = 2, type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
     parser.add_argument('-u', '--usage', action= 'store_true', help = 'prints the entire usage statement')
@@ -22,7 +22,7 @@ def find_authors(authors):
     '''Returns a dictionary of all authors that contain the search string along with a list of their books.'''
     
     author_dict = {} 
-    search_string = str(args.authors).lower()
+    search_string = str(authors).lower()
     
     with open('books.csv') as csv_file:
         csv_reader= csv.reader(csv_file, delimiter=',')
@@ -90,7 +90,8 @@ def print_dict_results(dictionary):
             for i in range(len(dictionary[key])):
                 print(" " * 5, key_list[i])
             print("")
-   
+    print("-" * 100)
+    
     return 
         
 def print_list_results(result_list):
@@ -102,6 +103,7 @@ def print_list_results(result_list):
             author = book_info[1]
             pub_year = book_info[2]
             print(title,"(", pub_year, "), written by", author, "\n")
+    print("-" * 100)
             
     return
 
