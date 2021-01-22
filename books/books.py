@@ -8,12 +8,10 @@ def get_parsed_arguments():
     '''Takes in user input and returns parsed arguments'''
     
     parser = argparse.ArgumentParser(description = 'Multiple ways to search through a csv file of authors and their books')
-
     parser.add_argument('-a', '--authors', type = str, metavar=' ', help = 'prints a list of every author who contains given search string and prints a list of each author\'s books')
     parser.add_argument('-t', '--titles', type = str, metavar='', help = 'prints a list of every book whose title contains given string')
     parser.add_argument('-y', '--years', nargs = 2, type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
     parser.add_argument('-u', '--usage', action= 'store_true', help = 'prints the entire usage statement')
-
     args = parser.parse_args()
     
     return args
@@ -23,7 +21,6 @@ def find_authors(authors):
     
     author_dict = {} 
     search_string = str(authors).lower()
-    
     with open('books.csv') as csv_file:
         csv_reader= csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
@@ -54,7 +51,6 @@ def find_years(years):
     '''Returns a list of all books that were published between the search years along with its author.'''
     
     publish_list = []
-    
     if years[0] > years[1]: 
         years_small = years[1]
         years_big = years[0]
