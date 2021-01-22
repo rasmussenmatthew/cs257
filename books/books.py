@@ -1,5 +1,6 @@
 #Eric Gassel & Matthew Rasmussen 
 #1/22/2021
+#Revised by both Eric Gassel & Matthew Rasmussen
 
 import csv
 import argparse
