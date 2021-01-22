@@ -17,6 +17,8 @@ Description:
 Note:
     For any use of the --authors (-a) or --titles (-t) flags followed by an input with a space must be enclosed in quotes. 
     
+    Multiple flags can be used at the same time, but their functionality will not stack. This meaning, you will not get a narrower search by using multiple flags, but rather two seperate results. 
+    
 Examples:
     --authors jane 
         Print out any author's name which contains "jane", printing out a list of their books on the line below. 
