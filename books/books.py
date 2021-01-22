@@ -5,7 +5,8 @@ import argparse
 
 
 def get_parsed_arguments():
-    #setting up parser and arguments 
+    '''setting up parser and arguments''' #HEYYYYYY FIX THIS
+    
     parser = argparse.ArgumentParser(description = 'Multiple ways to search through a csv file of authors and their books')
 
     parser.add_argument('-a', '--authors', type = str, metavar='', help = 'prints a list of every author who contains given search string and prints a list of each author\'s books')
