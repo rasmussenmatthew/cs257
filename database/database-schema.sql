@@ -20,17 +20,20 @@ CREATE TABLE games(
     city text
 );
 
+CREATE TABLE contest(
+    id SERIAL,
+    contest text,
+    sport text
+);
+
+
+
+
 CREATE TABLE medals(
     id SERIAL,
     medal text,
     game_id int,
     contest_id int
-);
-
-CREATE TABLE contest(
-    id SERIAL,
-    contest text,
-    sport text
 );
 
 CREATE TABLE contests_athletes(
