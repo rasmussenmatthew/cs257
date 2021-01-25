@@ -41,7 +41,22 @@ def make_nations_table():
         for nation in list_of_nations:
             writer.writerow(nation)
             
-#def make_games_table():
+def make_games_table():
+    game_dict = {}
+    with open ('athlete_events.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in csv_reader:
+            year = row[9]
+            season = row[10]
+            city = row[11]
+            if year != "Year":
+                if year not in game_dict:
+                    game_dict[year] = [season, city]
+    
+    with open('games.csv', 'w', newline='') as new_csv_file:
+        writer = csv.writer(new_csv_file, delimiter=',')
+        for key in game_dict:
+            writer.writerow([key, game_dict[key][0], game_dict[key][1]])
     
 #def make_contests_table():
 
@@ -49,6 +64,7 @@ def make_nations_table():
 
 def main():
     #make_athletes_table()
-    make_nations_table()
+    #make_nations_table()
+    make_games_table()
     
 main()
