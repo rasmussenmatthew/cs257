@@ -58,13 +58,25 @@ def make_games_table():
         for key in game_dict:
             writer.writerow([key, game_dict[key][0], game_dict[key][1]])
     
-#def make_contests_table():
-
-
+def make_contests_table():
+    contest_dict = {}
+    with open ('athlete_events.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in csv_reader:
+            contest = row[13]
+            sport = row[12]
+            if contest != "Event" and contest not in contest_dict:
+                contest_dict[contest] = sport
+    
+    with open('contests.csv', 'w', newline='') as new_csv_file:
+        writer = csv.writer(new_csv_file, delimiter=',')
+        for key in contest_dict:
+            writer.writerow( [key, contest_dict[key]]   )
 
 def main():
     #make_athletes_table()
     #make_nations_table()
-    make_games_table()
-    
+    #make_games_table()
+    make_contests_table()
+
 main()
