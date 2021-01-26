@@ -1,10 +1,9 @@
 CREATE TABLE athletes(
     id SERIAL,
-    name text,
+    athlete_name text,
     sex text,
-    age int,
     height int,
-    weight int
+    athlete_weight float
 );
 
 CREATE TABLE nations(
@@ -26,29 +25,16 @@ CREATE TABLE contest(
     sport text
 );
 
-CREATE TABLE medals(
-    id SERIAL,
-    medal text,
-    game_id int,
-    contest_id int
-);
-
-CREATE TABLE contests_athletes(
-    contest_id int,
-    athlete_id int
-);
-
-CREATE TABLE medals_athletes(
-    medal_id int,
-    athlete_id int
-);
-
-CREATE TABLE athletes_nations(
-    athelte_id int;
-    nation_id int
-);
-
 CREATE TABLE athletes_games(
-    athletes int,
-    games int
+    id int,
+    athlete_id int,
+    nation_id int,
+    game_id int
+);
+
+CREATE TABLE contests_medals(
+    id int,
+    athletes_nations_games_id int,
+    contest_id int,
+    medal text
 );
