@@ -26,9 +26,6 @@ CREATE TABLE contest(
     sport text
 );
 
-
-
-
 CREATE TABLE medals(
     id SERIAL,
     medal text,

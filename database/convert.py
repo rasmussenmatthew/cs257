@@ -11,72 +11,136 @@ def make_athletes_table():
     
     with open('athlete_events.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
+        headers = next(csv_reader)
         for row in csv_reader:
             name = row[1]
             sex = row[2]
-            age = row[3]
             height = row[4]
             weight = row[5]
-            if name != "Name":
-                if name not in athlete_dict:
-                    athlete_dict[name] = [sex, age, height, weight]
+            if name not in athlete_dict:
+                athlete_dict[name] = [len(athlete_dict) + 1, sex, height, weight]
                 
     with open('athletes.csv', 'w', newline='') as new_csv_file:
         writer = csv.writer(new_csv_file, delimiter=',')
         for key in athlete_dict:
-            writer.writerow([key, athlete_dict[key][0], athlete_dict[key][1], athlete_dict[key][2], athlete_dict[key][3]])
+            writer.writerow([athlete_dict[key][0], key, athlete_dict[key][1], athlete_dict[key][2], athlete_dict[key][3]])
+    
+    return athlete_dict
+    
 
 def make_nations_table():
-    list_of_nations = []
+    nations_dict = {}
     with open ('noc_regions.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
+        headers = next(csv_reader)
         for row in csv_reader:
             noc = row[0]
             region = row[1]
-            if noc != "NOC":
-                list_of_nations.append([noc, region])
+            nations_dict[noc] = [len(nations_dict) + 1, region]
+    
+    with open ('athlete_events.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        headers = next(csv_reader)
+        for row in csv_reader:
+            noc = row[7]
+            team = row[6]
+            if noc not in nations_dict:
+                nations_dict[noc] = [len(nations_dict) + 1, team]
     
     with open('nations.csv', 'w', newline='') as new_csv_file:
         writer = csv.writer(new_csv_file, delimiter=',')
-        for nation in list_of_nations:
-            writer.writerow(nation)
+        for nation in nations_dict:
+            writer.writerow([nations_dict[nation][0], nation, nations_dict[nation][1]])
+    
+    return nations_dict
             
 def make_games_table():
     game_dict = {}
     with open ('athlete_events.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
+        headers = next(csv_reader)
         for row in csv_reader:
             year = row[9]
             season = row[10]
             city = row[11]
-            if year != "Year":
-                if year not in game_dict:
-                    game_dict[year] = [season, city]
+            if year not in game_dict:
+                game_dict[year] = [len(game_dict) + 1, season, city]
     
     with open('games.csv', 'w', newline='') as new_csv_file:
         writer = csv.writer(new_csv_file, delimiter=',')
         for key in game_dict:
-            writer.writerow([key, game_dict[key][0], game_dict[key][1]])
+            writer.writerow([game_dict[key][0], key, game_dict[key][1], game_dict[key][2]])
+    
+    return game_dict
     
 def make_contests_table():
     contest_dict = {}
     with open ('athlete_events.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
+        headers = next(csv_reader)
         for row in csv_reader:
             contest = row[13]
             sport = row[12]
-            if contest != "Event" and contest not in contest_dict:
-                contest_dict[contest] = sport
+            if contest not in contest_dict:
+                contest_dict[contest] = [len(contest_dict) + 1, sport]
     
     with open('contests.csv', 'w', newline='') as new_csv_file:
         writer = csv.writer(new_csv_file, delimiter=',')
         for key in contest_dict:
-            writer.writerow( [key, contest_dict[key]]   )
+            writer.writerow([contest_dict[key][0], key, contest_dict[key][1]])
+    
+    return contest_dict
+
+def make_athletes_games(athelete_dict, nations_dict, games_dict):
+    athletes_games_dict = {}
+    with open ('athlete_events.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        headers = next(csv_reader)
+        for row in csv_reader:
+            athlete = row[1]
+            game_year = row[9]
+            noc = row[7]
+            if (athlete, game_year) not in athletes_games_dict:
+                athletes_games_dict[(athlete, game_year)] = [len(athletes_games_dict) + 1, athelete_dict[athlete][0], nations_dict[noc][0], games_dict[game_year][0]]
+    
+    with open('athletes_games.csv', 'w', newline='') as new_csv_file:
+        writer = csv.writer(new_csv_file, delimiter=',')
+        for key in athletes_games_dict:
+            writer.writerow(athletes_games_dict[key])
+    
+    return athletes_games_dict
+
+'''
+CREATE TABLE contests_medals(
+    id int, 
+    athletes_nations_games_id int
+    contest_id int,
+    medal text
+);
+'''
+def make_contests_medals(athletes_games_dict, contests_dict):
+    contests_medals_dict = {}
+    with open ('athlete_events.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        headers = next(csv_reader)
+        for row in csv_reader:
+            athlete = row[1]
+            game_year = row[9]
+            contest = row[13]
+            medal = row[14]
+            contests_medals_dict[len(contests_medals_dict) + 1] = [athletes_games_dict[(athlete, game_year)][0], contests_dict[contest][0], medal]
+
+    with open('contests_medals.csv', 'w', newline='') as new_csv_file:
+        writer = csv.writer(new_csv_file, delimiter=',')
+        for key in contests_medals_dict:
+            writer.writerow([key, contests_medals_dict[key][0], contests_medals_dict[key][1], contests_medals_dict[key][2]])   
 
 def main():
-    #make_athletes_table()
-    #make_nations_table()
-    #make_games_table()
-    make_contests_table()
+    athelete_dict = make_athletes_table()
+    nations_dict = make_nations_table()
+    games_dict = make_games_table()
+    contests_dict = make_contests_table()
+    athletes_games_dict = make_athletes_games(athelete_dict, nations_dict, games_dict)
+    make_contests_medals(athletes_games_dict, contests_dict)
 
 main()
