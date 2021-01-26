@@ -2,11 +2,12 @@
 #1/26/2021
 #Moves info from one CSV file to other CSV files
 
-#dictionary full of info
 import csv
 
 def make_athletes_table():
-    '''SOMETHING '''
+    ''' 
+    Reads the "athlete_events.csv", writes a new "athletes.csv" file, and then returns a dictionary with the same data within the "athletes.csv" file. 
+    '''
     athlete_dict = {}
     
     with open('athlete_events.csv') as csv_file:
@@ -29,6 +30,9 @@ def make_athletes_table():
     
 
 def make_nations_table():
+    '''
+    Reads the "noc_regions.csv" and the "athlete_event.csv" file then writes a new "nations.csv" file, and then returns a dictionary with the same data within the "nations.csv" file 
+    '''
     nations_dict = {}
     with open ('noc_regions.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -55,6 +59,9 @@ def make_nations_table():
     return nations_dict
             
 def make_games_table():
+    '''
+    Reads the "athlete_events.csv", writes a new "games.csv" file, and then returns a dictionary with the same data within the "games.csv" file.
+    '''
     games_dict = {}
     with open ('athlete_events.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -75,6 +82,9 @@ def make_games_table():
     return games_dict
     
 def make_contests_table():
+    '''
+    Reads the "athlete_events.csv", writes a new "contests.csv" file, and then returns a dictionary with the same data within the "contests.csv" file.
+    '''
     contest_dict = {}
     with open ('athlete_events.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -93,6 +103,9 @@ def make_contests_table():
     return contest_dict
 
 def make_athletes_games(athelete_dict, nations_dict, games_dict):
+    '''
+    Takes in three dictionaries that with the "athlete_events.csv" file create a new csv file called "athlete_games.csv" and then returns a dictionary with that same information.
+    '''
     athletes_games_dict = {}
     with open ('athlete_events.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -112,6 +125,9 @@ def make_athletes_games(athelete_dict, nations_dict, games_dict):
     return athletes_games_dict
 
 def make_contests_medals(athletes_games_dict, contests_dict):
+    '''
+    Takes in two dictionaries that with the "athlete_events.csv" file create a new csv file called "contests_medals.csv" and then returns a dictionary with that same information.
+    '''
     contests_medals_dict = {}
     with open ('athlete_events.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
