@@ -22,5 +22,11 @@ AND contests.id = contests_medals.contest_id
 ORDER BY games.game_year;
 
 
-SELECT nations.noc, COUNT(...)
+SELECT nations.NOC, COUNT(contests_medals.medal)
+FROM nations, athletes_games, contests_medals
+WHERE athletes_games.id = contests_medals.athletes_nations_games_id
+AND nations.id = athletes_games.nation_id
+AND contests_medals.medal = 'Gold'
+GROUP BY nations.NOC
+ORDER BY COUNT(contests_medals.medal) DESC;
 
