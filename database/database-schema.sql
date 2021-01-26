@@ -19,7 +19,7 @@ CREATE TABLE games(
     city text
 );
 
-CREATE TABLE contest(
+CREATE TABLE contests(
     id SERIAL,
     contest text,
     sport text
