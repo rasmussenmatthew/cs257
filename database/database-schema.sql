@@ -34,7 +34,7 @@ CREATE TABLE athletes_games(
 
 CREATE TABLE contests_medals(
     id int, 
-    athletes_nations_games_id int,
+    athletes_games_id int,
     contest_id int,
     medal text
 );
