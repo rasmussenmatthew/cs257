@@ -1,5 +1,5 @@
 CREATE TABLE athletes(
-    id SERIAL,
+    id int,
     athlete_name text,
     sex text,
     height int,
@@ -7,20 +7,20 @@ CREATE TABLE athletes(
 );
 
 CREATE TABLE nations(
-    id SERIAL,
+    id int,
     NOC text,
     team text
 );
 
 CREATE TABLE games(
-    id SERIAL,
+    id int,
     game_year int,
     season text,
     city text
 );
 
 CREATE TABLE contests(
-    id SERIAL,
+    id int,
     contest text,
     sport text
 );
@@ -33,7 +33,7 @@ CREATE TABLE athletes_games(
 );
 
 CREATE TABLE contests_medals(
-    id int,
+    id int, 
     athletes_nations_games_id int,
     contest_id int,
     medal text

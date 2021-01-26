@@ -64,7 +64,7 @@ def make_games_table():
             year = row[9]
             season = row[10]
             city = row[11]
-            if year not in games_dict:
+            if game not in games_dict:
                 games_dict[game] = [len(games_dict) + 1, year, season, city]
     
     with open('games.csv', 'w', newline='') as new_csv_file:
