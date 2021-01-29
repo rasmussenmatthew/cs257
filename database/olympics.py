@@ -2,80 +2,71 @@
 #1/29/2021
 #This does things from the command line with my database 
 
-#COPIED FROM books.py 
+from config import password
+from config import database
+from config import user
 import csv
 import argparse
+
 
 def get_parsed_arguments():
     '''Takes in user input and returns parsed arguments'''
     
-    parser = argparse.ArgumentParser(description = 'Multiple ways to search through a csv file of authors and their books')
-    parser.add_argument('-a', '--authors', type = str, metavar=' ', help = 'prints a list of every author who contains given search string and prints a list of each author\'s books')
-    parser.add_argument('-t', '--titles', type = str, metavar='', help = 'prints a list of every book whose title contains given string')
-    parser.add_argument('-y', '--years', nargs = 2, type = int, metavar='', help = 'prints a list of every book published between input year A and B, inclusive')
+    parser = argparse.ArgumentParser(description = 'Search methods for the olympics database')
+    parser.add_argument('-a', '--athletes', type = str, metavar=' ', help = 'prints a list of every athlete from a specified NOC (search string)')
+    parser.add_argument('-gc', '--gold_count', type = str, metavar='', help = 'prints a list of every NOC and a count of gold medals one by their respective representatives')
+    parser.add_argument('-avg', '--average_age', type = str, metavar='', help = 'prints the average age of the participants in every sport')
     parser.add_argument('-u', '--usage', action= 'store_true', help = 'prints the entire usage statement')
     args = parser.parse_args()
     
     return args
- 
-def find_authors(authors): 
-    '''Returns a dictionary of all authors that contain the search string along with a list of their books.'''
+
+def find_athletes(athletes):
+    '''
+        Returns or prints a list of athletes from a specified NOC
+    '''
+    try:
+        connection = psycopg2.connect(database=database, user=user, password=password)
+    except Exception as e:
+        print(e)
+        exit()
     
-    author_dict = {} 
-    search_string = str(authors).lower()
-    with open('books.csv') as csv_file:
-        csv_reader= csv.reader(csv_file, delimiter=',')
-        for row in csv_reader:
-            author = row[2]
-            author_book = row[0]
-            if search_string in author.lower():
-                if author not in author_dict: 
-                    author_dict[author] = [author_book]
-                else:
-                    author_dict[author].append(author_book)
-   
-    return author_dict
+    search_string = athletes
+    try:
+        cursor = connection.cursor()
+        query = '''SELECT DISTINCT athletes.athlete_name, nations.NOC FROM nations, athletes_games, athletes WHERE athletes.id = athletes_games.athlete_id AND nations.id = athletes_games.nation_id AND nations.NOC = '%s' ORDER BY athlete_name;'''
+        cursor.execute(query, (search_string))
+    except Exception as e:
+        print(e)
+        exit()
 
-def find_titles(titles): 
-    '''Returns a list of all titles that contain the search string along with its author and publish year.'''
-    
-    titles_list = []
-    with open('books.csv') as csv_file:
-        csv_reader= csv.reader(csv_file, delimiter=',')
-        for row in csv_reader: 
-            if titles.lower() in row[0].lower():
-                temp_list=[row[0],row[2],row[1]]
-                titles_list.append(temp_list)    
-                
-    return titles_list
+    print('===== All athletes from {0}===='.format(search_string))
+    for row in cursor:
+        print(row[0])
+    print()
 
-def find_years(years): 
-    '''Returns a list of all books that were published between the search years along with its author.'''
-    
-    publish_list = []
-    if years[0] > years[1]: 
-        years_small = years[1]
-        years_big = years[0]
-    else:                   
-        years_big = years[1]
-        years_small = years[0]
+    connection.close()
 
-    with open('books.csv') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        for row in csv_reader:
-            book_year = int(row[1])
-            if book_year >= years_small and book_year <= years_big:
-                temp_list=[row[0],row[2],row[1]]
-                publish_list.append(temp_list) 
-                
-    return publish_list
 
-def print_usage():
-    with open("usage.txt") as usage_file:
-        for line in usage_file:
-            print(line)
+def find_gold_count():
+    '''
+        Print the tally of gold medals one by representatives of each NOC
+    '''
+    return 
+
+def find_avg_age():
+    '''
+        Print the average age of the participants in every sport
+    '''
+    return 
+
+#def print_usage():
+ #   with open("usage.txt") as usage_file:
+  #      for line in usage_file:
+   #         print(line)
             
-    return
+    #return
+''' 
 
 def print_dict_results(dictionary):
     if not dictionary:
@@ -104,15 +95,15 @@ def print_list_results(result_list):
     print("-" * 100)
             
     return
-
+'''
 def main():
     args = get_parsed_arguments()
-    if args.authors != None:
-        print_dict_results(find_authors(args.authors))
-    if args.titles != None:
-        print_list_results(find_titles(args.titles))
-    if args.years != None:
-        print_list_results(find_years(args.years))
+    if args.athletes != None:
+        #print_dict_results(find_athletes(args.athletes))
+    if args.gold_count != None:
+        #print_list_results(find_gold_count(args.gold_count))
+    if args.average_age != None:
+        #print_list_results(find_avg_age(args.average_age))
     if args.usage:
         print_usage()
 
