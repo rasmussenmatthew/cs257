@@ -1,0 +1,47 @@
+Eric Gassel and Matthew Rasmussen 
+
+Synopsis:
+    python3 books.py --athletes [string]
+    python3 books.py --gold_count
+    python3 books.py --average_height
+    python3 books.py --usage
+    python3 books.py --help
+
+Description:
+    --athletes, -a          prints a list of every athlete from a specified NOC (search string)
+    --gold_count, -gc       prints a list of every NOC and a count of gold medals won by their respective representatives
+    --average_height, -avg  prints the average height of the participants in every sport
+    --usage, -u             prints the entire usage statement
+    --help, -h              shows help message
+    
+Note:    
+    Multiple flags can be used at the same time, but their functionality will not stack. This meaning, you will not get a narrower search by using multiple flags, but rather two seperate results. 
+    
+Examples:
+    --athletes KEN 
+        Print out every athlete that competed for the NOC, 'KEN', order alphabetically by first name. 
+        
+        ===== All athletes from KEN====
+        Abdallah Juma
+        Abdul Rahman Omar
+        Abednego Matilu
+        Abel Kiprop Mutai
+        Abel Kirui
+        
+    --gold_count 
+        
+        ===== Count of Gold Medals Won by each NOC ====
+        USA | 2638
+        URS | 1082
+        GER | 743
+        GBR | 678
+        ITA | 575
+
+    --average_height
+
+        ===== Average Height of Participants for Every Sport (cm) ====
+        Aeronautics | None
+        Alpine Skiing | 173.4843603378167032
+        Alpinism | None
+        Archery | 173.1833590138674884
+        Art Competitions | 174.6666666666666667
