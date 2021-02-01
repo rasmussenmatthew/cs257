@@ -16,6 +16,9 @@ app = flask.Flask(__name__)
 
 @app.route('/games')
 def get_games():
+    ''' Returns a list of all Olympic games, 
+        including their id, year, season and city, sorted by year 
+    '''
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
     except Exception as e:
@@ -31,15 +34,17 @@ def get_games():
         exit()
     
     results_list = []
-
     for row in cursor:
         games_dictionary = {'id': row[0], 'year' : row[1], 'season' : row[2], 'city' : row[3]}
         results_list.append(games_dictionary)
     
+    connection.close()
+
     return json.dumps(results_list)
 
-@app.route('/noc')
+@app.route('/nocs')
 def get_noc():
+    ''' Returns a list of all NOCs' abbreviations and full names '''
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
     except Exception as e:
@@ -58,19 +63,25 @@ def get_noc():
     for row in cursor:
         nations_dictionary = {'NOC' : row[0], 'region' : row[1]}
         results_list.append(nations_dictionary)
-    
+        
+    connection.close()
+
     return json.dumps(results_list)
 
 
 @app.route('/medalists/games/<games_id>')
 def get_medalists(games_id):
+    '''Returns a list of all athletes who earned medals in the game that matches games_id
+       If the GET parameter noc=noc_abbreviation is present, returns only those medalists 
+       who were on the specified NOC's team during the specified game
+    '''
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
     except Exception as e:
         print(e)
         exit()
 
-    games_id = games_id
+    # When GET parameter noc is present
     noc = flask.request.args.get('noc')
     if noc is not None:
         try:
@@ -90,6 +101,8 @@ def get_medalists(games_id):
         except Exception as e:
             print(e)
             exit()
+
+    # When GET parameter noc is not present
     else:
         try:
             cursor = connection.cursor()
@@ -111,12 +124,14 @@ def get_medalists(games_id):
     for row in cursor:
         nations_dictionary = {'athlete_id':row[0], 'athlete_name':row[1], 'athlete_sex':row[2], 'sport':row[3], 'event':row[4], 'medal':row[5]}
         results_list.append(nations_dictionary)
-
+    
+    connection.close()
+    
     return json.dumps(results_list)
 
     
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser('A sample Flask application/API')
+    parser = argparse.ArgumentParser('Olympics dataset API')
     parser.add_argument('host', help='the host on which this application is running')
     parser.add_argument('port', type=int, help='the port on which this application is listening')
     arguments = parser.parse_args()
