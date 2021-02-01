@@ -16,16 +16,6 @@ app = flask.Flask(__name__)
 
 @app.route('/games')
 def get_games():
-    '''
-        a JSON list of dictionaries, each of which represents one
-        Olympic games, sorted by year. Each dictionary in this list will have
-        the following fields.
-
-        id -- (INTEGER) a unique identifier for the games in question
-        year -- (INTEGER) the 4-digit year in which the games were held (e.g. 1992)
-        season -- (TEXT) the season of the games (either "Summer" or "Winter")
-        city -- (TEXT) the host city (e.g. "Barcelona") 
-    '''
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
     except Exception as e:
@@ -79,6 +69,7 @@ def get_medalists(games_id):
     except Exception as e:
         print(e)
         exit()
+
     games_id = games_id
     noc = flask.request.args.get('noc')
     if noc is not None:
@@ -86,15 +77,16 @@ def get_medalists(games_id):
             cursor = connection.cursor()
             query = '''SELECT DISTINCT athletes.id, athletes.athlete_name, athletes.sex, 
                     contests.sport, contests.contest, contests_medals.medal 
-                    FROM athletes, contests_medals, athletes_games, contests, games
+                    FROM athletes, contests_medals, athletes_games, contests, games, nations
                     WHERE athletes.id = athletes_games.athlete_id
                     AND games.id = %s
                     AND games.id = athletes_games.game_id
                     AND athletes_games.id = contests_medals.athletes_games_id
                     AND contests_medals.medal IS NOT NULL
                     AND nations.id = athletes_games.nation_id
+                    AND nations.noc = %s
                     AND contests.id = contests_medals.contest_id;'''
-            cursor.execute(query, (games_id,))
+            cursor.execute(query, (games_id, noc))
         except Exception as e:
             print(e)
             exit()
@@ -117,13 +109,12 @@ def get_medalists(games_id):
 
     results_list = []
     for row in cursor:
-        nations_dictionary = {'athleteid':row[0], 'athletename':row[1], 'athletesex':row[2], 'sport':row[3], 'event':row[4], 'medal':row[5]}
+        nations_dictionary = {'athlete_id':row[0], 'athlete_name':row[1], 'athlete_sex':row[2], 'sport':row[3], 'event':row[4], 'medal':row[5]}
         results_list.append(nations_dictionary)
 
     return json.dumps(results_list)
 
     
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A sample Flask application/API')
     parser.add_argument('host', help='the host on which this application is running')
