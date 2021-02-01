@@ -72,7 +72,7 @@ def get_noc():
     return json.dumps(results_list)
 
 
-@app.route('/medalists/games/<games_id>?[noc=noc_abbreviation]')
+@app.route('/medalists/games/<games_id>')
 def get_medalists(games_id):
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
@@ -117,8 +117,10 @@ def get_medalists(games_id):
 
     results_list = []
     for row in cursor:
-        nations_dictionary = {'athleteid':row[0], 'athletename':row[1], 'athletesex':row[3], 'sport':row[4], 'event':[5], 'medal':row[6]}
+        nations_dictionary = {'athleteid':row[0], 'athletename':row[1], 'athletesex':row[2], 'sport':row[3], 'event':row[4], 'medal':row[5]}
         results_list.append(nations_dictionary)
+
+    return json.dumps(results_list)
 
     
 
