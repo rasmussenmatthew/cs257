@@ -16,7 +16,8 @@ app = flask.Flask(__name__)
 
 @app.route('/games')
 def get_games():
-    ''' Returns a list of all Olympic games, 
+    ''' 
+        Returns a list of all Olympic games, 
         including their id, year, season and city, sorted by year 
     '''
     try:
@@ -44,7 +45,9 @@ def get_games():
 
 @app.route('/nocs')
 def get_noc():
-    ''' Returns a list of all NOCs' abbreviations and full names '''
+    ''' 
+        Returns a list of all NOCs' abbreviations and full names 
+    '''
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
     except Exception as e:
@@ -71,9 +74,10 @@ def get_noc():
 
 @app.route('/medalists/games/<games_id>')
 def get_medalists(games_id):
-    '''Returns a list of all athletes who earned medals in the game that matches games_id
-       If the GET parameter noc=noc_abbreviation is present, returns only those medalists 
-       who were on the specified NOC's team during the specified game
+    '''
+        Returns a list of all athletes who earned medals in the game that matches games_id
+        If the GET parameter noc=noc_abbreviation is present, returns only those medalists 
+        who were on the specified NOC's team during the specified game
     '''
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
