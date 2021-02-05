@@ -3,18 +3,47 @@
    2/5/2021
    For use with index.html
 */
+img {
+    max-width: 40%;
+    height: 30%;
+  }
+
+a {
+    color: coral;
+}
+
+body {
+    margin: 20px;
+}
 
 #top{
-
-
+    width: 95vw;
+    height: 15vh;
+    float: left;
+    font-size: 12pt;
+    color: white;
+    background-color: #f58c03;
+    border: 6px outset rgb(180, 2, 91);
 }
 
 #left_body{
-
+    width: 20vw;
+    height: 75vh;
+    float: left;
+    font-size: 12pt;
+    color: black;
+    background-color: #15adf3;
+    border: 3px outset rgb(180, 2, 91);
 
 }
 
 #right_body{
+    width: 75vw;
+    height: 75vh;
+    float: left;
+    font-size: 12pt;
+    color: black;
+    background-color: #d130fa;  
+    border: 3px outset rgb(180, 2, 91);
 
-    
 }
