@@ -1,0 +1,64 @@
+Nacho Rodriguez-Cortes
+Matthew Rasmussen 
+
+Dataset: 
+Dungeons & Dragons
+    This dataset holds information about D&D 5th Edition including: : Classes
+    Equipment, Monsters, Races, and Spells.
+https://www.kaggle.com/shadowtime2000/dungeons-dragons
+
+
+User Stories:
+
+STORY: As a D&D player you can get a full list of 
+the spells avaiable to your class, so they can decide 
+which spells to use and what they do.
+
+IMPLEMENTATION: There will be a couple ways to do this, 
+they can follow a menu on the side that will take them 
+to a specific class'' spell list (in the form of a table). 
+From there they can click on a spell name and a new tab
+will be created displaying more detailed information alongside 
+an interactive visualization of range, damage, and area of effect.
+
+STORY: As a D&D player you can get information regarding equipment (including weapons)
+so that they can finish creating a character. 
+
+IMPLEMENTATION: When players open the equipment page, they are presented 
+with a weapons table with basic information. They can then click on a particular 
+weapon to open a new tab containing more detailed information. Below the 
+header there will be tabs that allow you to switch between the different types of 
+equipment. 
+
+STORY: As a D&D player you can get basic information about the different races 
+so that they can decide which one they want to play as. 
+
+IMPLEMENTATION: When players open the races page, they are presented with visual
+representations of the different races. They can then click on the image of the 
+race they would like more information about to get detailed information on the race. 
+Note: this will not open a new tab. 
+
+STORY: As a D&D player you can get information about specific classes 
+so that they can decide which class they want to play. 
+
+IMPLEMENTATION: By clicking the 'classes' title in the side menu a drop down menu 
+is produced showing the different classes you can click on to be taken to a new page with 
+that classes information. 
+
+STORY: As a D&D DM you can get information on monsters 
+so they can create encounters and populate dungeons with 
+specifically desired monsters.
+
+IMPLEMENTATION: By clicking on monsters a table displays all of 
+the monsters alphabetically. Filters are available to specify
+which entries should be displayed. 
+
+STORY: As a D&D player you can search for any race, class, equipment,
+monster, or spell by typing in the search box in the upper right corner 
+because they want information related to a certain word.
+
+IMPLEMENTATION: By typing in the search box, users are presented with
+possible autocompletions. After typing in a search query user is presented 
+with a search page that shows search results partitioned by their 
+respective grouping (spell, monster, equipment, etc.). 
+
