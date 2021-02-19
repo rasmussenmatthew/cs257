@@ -6,13 +6,14 @@ RESPONSE: a JSON list of dictionaries each of which containing the title of our 
 
 REQUEST: /races
 
-RESPONSE: a JSON list of dictionaries each of which contains the name of the race and the corresponding image. 
+RESPONSE: a JSON list of dictionaries each of which contains the name of the race and the corresponding image.
 
 REQUEST: /races/example_race
 
-RESPONSE: a JSON dictionary containing the information about a particular race. 
-	
-    Here are some of the fields this response will contain: 
+RESPONSE: a JSON dictionary containing the information about a particular race.
+
+    Here are some of the fields this response will contain:
+    name -- (string) the name of the race
 	speed -- (integer) the amount of feet a race can move per turn
 	size -- (string) describes the size of the race
 	language_desc -- (string) describes the languages in which a race can speak
@@ -23,36 +24,64 @@ RESPONSE: an alphabetized JSON list of strings, each of which is a class name
 
 REQUEST: /classes/class_example
 
-RESPONSE: a JSON dictionary containing the information about a particular class. 
+RESPONSE: a JSON dictionary containing the information about a particular class.
 
-    Here are some of the fields this response will contain: 
+    Here are some of the fields this response will contain:
+    name -- (string) the name of the class
 	hit_die -- (integer) describes the die used when rolling for health
-	saving_throws -- (string) describes which saving throws they are proficient in 
-	proficiencies -- (string) equipment that the class is proficient with 
+	saving_throws -- (string) describes which saving throws they are proficient in
+	proficiencies -- (string) equipment that the class is proficient with
 
-REQUEST: /equipment 
+REQUEST: /equipment
 
-RESPONSE: a JSON list of dictionaries containing the essential information for every piece of equpimenmt 
+RESPONSE: a JSON list of dictionaries containing the essential information for every piece of equpimenmt
 
     Here are the fields for one of the sections of equipment (Weapons):
+    name -- (string) the name of the weapon
 	cost -- (integer) the cost for the weapon
 	range -- (integer) the range of the weapon in feet
 	damage_die -- (string) the die used for rolling damage
 	damage_type -- (string) describes the type of damage done (slashing, piercing, or bludgeoning)
-	
+
 REQUEST: /equipment/example_example
 
-RESPONSE: a JSON dictionary containing all information for a piece of equipment. See essential information above alongside any fields left out from said information. 
+RESPONSE: a JSON dictionary containing all information for a piece of equipment.
+See essential information above alongside any fields left out from said information.
 
 REQUEST: /spells
 
 RESPONSE: a JSON list of dictionaries containing the essential information for every spell.
 
-   Here are the fields for ecah spell:
+   Here are the fields for each spell:
+    name -- (string) the name of the spell
 	range -- (integer) range the spell can be cast in feet
-	duration -- (string) description of how long the spell lasts 
-	concentration -- (boolean) says whether or not the spell requires concentration 
+	duration -- (string) description of how long the spell lasts
+	concentration -- (boolean) says whether or not the spell requires concentration
 	casting_time -- (string) describes how long it takes to cast the spell
-	level -- (integer) describes the minimum level need to cast the spell 
+	level -- (integer) describes the minimum level need to cast the spell
 
+REQUEST: /spells/spell_example
 
+RESPONSE: a JSON dictionary containing all of the information for a certain spell.
+See essential information above alongside any fields left out from said information.
+
+REQUEST: /monsters
+
+RESPONSE: a JSON list of dictionaries containing the essential information for each monster.
+
+    Here are the fields for each monster:
+      name -- (string) the name of the monster
+      type -- (string) the class of monster
+      challenge_rating -- (integer) the calculated difficulty of the monster
+      hit_points -- (integer) describes the amount of health a monster has
+      armor_class -- (integer) describes the armor class of the monster
+
+REQUEST: /monsters/monster_example
+
+RESPONSE: a JSON dictionary containing all of the information for a certain monster.
+See essential information above alongside any fields left out from said information.
+
+REQUEST: /search/{search_text}
+
+RESPONSE: a JSON list of dictionaries each of which represents
+either an equipment, a monster, a race, a spell or a class. 
