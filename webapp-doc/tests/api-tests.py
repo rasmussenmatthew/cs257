@@ -16,12 +16,12 @@ class WebAppChecker(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_races(self):
+    def test_spells(self):
         #do we even?
         pass
 
-    def test_races_example(self):
-        self.assertTrue(self.prime_checker.is_prime(2)
+    def test_spells_example(self):
+        pass 
 
 
 

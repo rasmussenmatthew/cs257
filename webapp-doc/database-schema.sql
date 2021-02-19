@@ -4,40 +4,6 @@ Matthew Rasmussen
 2/19/2021
 '''
 
-CREATE TABLE public.races(
-    id integer,
-    name text,
-    speed integer,
-    alignment text,
-    age text,
-    size text,
-    size_desc text,
-    starting_proficiencies text,
-    languages text,
-    language_desc text,
-    traits text,
-    subraces text
-);
-
-CREATE TABLE public.ability_bonuses(
-    race_id integer,
-    str integer,
-    dex integer,
-    inte integer,
-    wis integer,
-    con integer,
-    chr integer
-);
-
-CREATE TABLE public.classes(
-    name text,
-    hit_die integer,
-    proficiency_choices text,
-    proficiencies text,
-    saving_throws text,
-    subclasses text
-);
-
 CREATE TABLE public.weapons(
     id integer,
     name text,
@@ -93,17 +59,17 @@ CREATE TABLE public.mounts(
 );
 
 CREATE TABLE public.spells(
-    name text,
-    description text,
+    id integer,
+    spell_name text,
+    spell_description text,
     higher_level text,
-    range text,
     components text,
     material text,
     ritual boolean,
     duration text,
     concentration boolean,
     casting_time text,
-    level integer,
+    spell_level integer,
     attack_type text,
     damage_type text,
     damage_modifier text,
@@ -111,42 +77,12 @@ CREATE TABLE public.spells(
     classes text,
     dc_type text,
     dc_success text,
-    heal_at_level text,
+    heal_at_level text
+);
+
+CREATE TABLE public.spell_measurments (
+    spell_id integer,
+    spell_range text,
     area_of_effect_shape text,
     area_of_effect_range integer
-);
-
-CREATE TABLE public.monsters(
-    id integer,
-    name text,
-    size text,
-    type text,
-    subtype text,
-    alignment text,
-    armor_class integer,
-    hit_point integer,
-    hit_dice text,
-    speed text,
-    proficiencies text,
-    vulnerabilities text,
-    resistences text,
-    dmg_immunities text,
-    condition_immunities text,
-    senses text,
-    languages text,
-    challenge_rating integer,
-    special_abilities text,
-    actions text,
-    legendary_actions text,
-    reactions text
-);
-
-CREATE TABLE public.monster_stats(
-    monster_id integer,
-    str integer,
-    dex integer,
-    inte integer,
-    wis integer,
-    con integer,
-    chr integer
 );
