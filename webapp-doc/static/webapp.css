@@ -1,0 +1,13 @@
+/*
+    webapp.css
+    Matthew Rasmussen, Nacho Rodriguez-Cortes
+    21 February 2021
+
+    CSS for the web app for CS257.
+*/
+
+body {
+    margin: 20px;
+    font-family: Helvetica;
+    background: #ddffdd;
+}
