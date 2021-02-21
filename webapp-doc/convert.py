@@ -6,7 +6,7 @@ import csv
 
 def make_spells_table():
     ''' 
-    Reads the "spells.csv", writes a new "spells.csv" file.
+    Reads the "spells.csv", writes a new "spells_new.csv" file.
     '''
     spell_dict = {}
     
@@ -25,14 +25,13 @@ def make_spells_table():
             casting_time = row[12]
             spell_level = row[13]
             attack_type = row[14]
-            damage_type = row[15]['damage_type']
-            damage_modifier = row[15]['damage_at_slot_level']
+            damage_information = row[15]
             school = row[16]['name']
             classes = row[17]['name']
             dc_type = row[20]['name']
             dc_success = row[20]['dc_success']
             heal_at_level = row[21]
-            if name not in athlete_dict:
+            if name not in spell_dict:
                 spell_dict[name] = [len(spell_dict) + 1, spell_description, higher_level, components, material, ritual, duration, concentration, casting_time, spell_level, attack_type, damage_type, damage_modifier, school, classes, dc_type, dc_success, heal_at_level]
                 
     with open('spells_new.csv', 'w', newline='') as new_csv_file:
@@ -43,6 +42,6 @@ def make_spells_table():
     return spell_dict  
 
 def main():
-    spell_dict = make_spells_table
+    spell_dict = make_spells_table()
 
 main()
