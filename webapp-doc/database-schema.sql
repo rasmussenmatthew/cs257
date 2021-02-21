@@ -74,8 +74,7 @@ CREATE TABLE public.spells(
     damage_information text,
     school text,
     classes text,
-    dc_type text,
-    dc_success text,
+    dc_information text,
     heal_at_level text
 );
 
