@@ -40,7 +40,49 @@ def make_spells_table():
     
     return spell_dict  
 
+def make_spell_measurments_table():
+    ''' 
+    Reads the "spells.csv", writes a new "spell_measurments.csv" file.
+    '''
+    spell_dict = {}
+    
+    with open('spells.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        headers = next(csv_reader)
+        spell_id = 1
+        for row in csv_reader:
+            spell_range = row[6]
+            if row[22] != "":
+                split_string = row[22].split(',')
+                first_half = split_string[0]
+                second_half = split_string[1]
+
+                split_string = first_half.split(':')
+                effect_shape = split_string[1]
+                effect_shape = effect_shape[2:-1]
+
+                split_string = second_half.split(':')
+                effect_range = split_string[1]
+                effect_range = effect_range[:-1]
+
+            else:
+                effect_range = None
+                effect_shape = None 
+
+            if spell_id not in spell_dict:
+                spell_dict[spell_id] = [spell_range, effect_shape, effect_range]
+                spell_id += 1
+                                
+    with open('spell_measurments.csv', 'w', newline='') as new_csv_file:
+        writer = csv.writer(new_csv_file, delimiter=',')
+        for key in spell_dict:
+            writer.writerow([key, spell_dict[key][0], spell_dict[key][1], spell_dict[key][2]])
+    
+    return spell_dict 
+
+
 def main():
     spell_dict = make_spells_table()
+    spell_measurments_dict = make_spell_measurments_table()
 
 main()
