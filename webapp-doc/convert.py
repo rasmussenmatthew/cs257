@@ -1,5 +1,5 @@
-#Claire Williams & Matthew Rasmussen
-#1/26/2021
+#Nacho Rodriguez-Cortes & Matthew Rasmussen
+#2/21/2021
 #Moves info from one CSV file to other CSV files
 
 import csv
