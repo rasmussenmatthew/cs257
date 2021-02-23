@@ -5,9 +5,29 @@
 
     CSS for the web app for CS257.
 */
-
-body {
-    margin: 20px;
-    font-family: Helvetica;
-    background: #ddffdd;
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 1em;
 }
+
+.header {
+    grid-column: 1 /3;
+    grid-row: 1;
+    background-color: red;
+}
+
+.content {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    background-color: green;
+}
+
+
+.side_bar {
+    grid-column: 1;
+    grid-row: 2 / 3;
+    background-color: blue;
+}
+
