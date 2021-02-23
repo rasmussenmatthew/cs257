@@ -9,9 +9,9 @@
 window.onload = initialize;
 
 function initialize() {
-    var element = document.getElementById('cats_button');
-    if (element) {
-        element.onclick = onCatsButton;
+    var element = document.getElementById('spell_list');
+    if (true) {
+        getSpells;
     }
 
     var element = document.getElementById('dogs_button');
@@ -25,27 +25,27 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
-function onCatsButton() {
-    var url = getAPIBaseURL() + '/cats/';
+function getSpells() {
+    var url = getAPIBaseURL() + '/spells';
 
     fetch(url, {method: 'get'})
 
     .then((response) => response.json())
 
-    .then(function(cats) {
+    .then(function(get_spells) {
         var listBody = '';
-        for (var k = 0; k < cats.length; k++) {
-            var cat = cats[k];
-            listBody += '<li>' + cat['name']
-                      + ', ' + cat['birth_year']
-                      + '-' + cat['death_year']
-                      + ', ' + cat['description'];
+        for (var k = 0; k < spells.length; k++) {
+            var spell = spells[k];
+            listBody += '<li>' + spell['spell_name']
+                      + ', ' + spell['spell_description']
+                      + '-' + spell['components']
+                      + ', ' + spell['ritual'];
                       + '</li>\n';
         }
 
-        var animalListElement = document.getElementById('animal_list');
-        if (animalListElement) {
-            animalListElement.innerHTML = listBody;
+        var spellListElement = document.getElementById('spell_list');
+        if (spellListElement) {
+            spellListElement.innerHTML = listBody;
         }
     })
 

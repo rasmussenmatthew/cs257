@@ -12,17 +12,30 @@ import psycopg2
 
 api = flask.Blueprint('api', __name__)
 
-@api.route('/cats/')
-def get_cats():
-    # Of course, your API will be extracting data from your postgresql database.
-    # To keep the structure of this tiny API crystal-clear, I'm just hard-coding data here.
-    cats = [{'name':'Emma', 'birth_year':1983, 'death_year':2003, 'description':'the boss'},
-            {'name':'Aleph', 'birth_year':1984, 'death_year':2002, 'description':'sweet and cranky'},
-            {'name':'Curby', 'birth_year':1999, 'death_year':2000, 'description':'gone too soon'},
-            {'name':'Digby', 'birth_year':2000, 'death_year':2018, 'description':'the epitome of Cat'},
-            {'name':'Max', 'birth_year':1998, 'death_year':2009, 'description':'seismic'},
-            {'name':'Scout', 'birth_year':2007, 'death_year':None, 'description':'accident-prone'}]
-    return json.dumps(cats)
+@api.route('/spells')
+def get_spells():
+    try:
+        connection = psycopg2.connect(database=database, user=user, password=password)
+    except Exception as e:
+        print(e)
+        exit()
+
+    try:
+        cursor = connection.cursor()
+        query = 'SELECT spell_name, spell_description, components, ritual FROM spells LIMIT 10'
+        cursor.execute(query)
+    except Exception as e:
+        print(e)
+        exit()
+
+    spells_list = []
+    for row in cursor:
+        spells_dictionary = {'spell_name' : row[0], 'spell_description' : row[1], 'components' : row[2], 'ritual' : row[3]}
+        spells_list.append(spells_dictionary)
+        
+    connection.close()
+
+    return json.dumps(spells_list)
 
 @api.route('/dogs/')
 def get_dogs():
