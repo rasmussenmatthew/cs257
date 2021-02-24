@@ -9,12 +9,7 @@
 window.onload = initialize;
 
 function initialize() {
-    getSpells();
-
-    var element = document.getElementById('dogs_button');
-    if (element) {
-        element.onclick = onDogsButton;
-    }
+    get_spells();
 }
 
 function getAPIBaseURL() {
@@ -22,8 +17,8 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
-function getSpells() {
-    var url = getAPIBaseURL() + '/spells';
+function get_spells() {
+    var url = getAPIBaseURL() + '/spells/';
 
     fetch(url, {method: 'get'})
 
