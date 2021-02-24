@@ -18,7 +18,7 @@ function getAPIBaseURL() {
 }
 
 function get_spells() {
-    var url = getAPIBaseURL() + '/spells/';
+    var url = getAPIBaseURL() + '/spells';
 
     fetch(url, {method: 'get'})
 
