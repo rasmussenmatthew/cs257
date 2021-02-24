@@ -7,8 +7,11 @@
 import sys
 import flask
 import json
-import config
 import psycopg2
+
+from config import password
+from config import database
+from config import user
 
 api = flask.Blueprint('api', __name__)
 
@@ -34,11 +37,8 @@ def get_spells():
         spells_list.append(spells_dictionary)
         
     connection.close()
-
+    '''
+    spells_list = [{'spell_name':'acid arrow', 'spell_description':'fire an acid arrow', 'components':'[v,s]', 'ritual':'FALSE'},
+                    {'spell_name':'fireball', 'spell_description':'giant exploding ball of fire', 'components':'[v,s]', 'ritual':'FALSE'}]
+    '''
     return json.dumps(spells_list)
-
-@api.route('/dogs/')
-def get_dogs():
-    dogs = [{'name':'Ruby', 'birth_year':2003, 'death_year':2016, 'description':'a very good dog'},
-            {'name':'Maisie', 'birth_year':2017, 'death_year':None, 'description':'a very good dog'}]
-    return json.dumps(dogs)
