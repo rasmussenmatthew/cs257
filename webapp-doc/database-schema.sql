@@ -17,6 +17,7 @@ CREATE TABLE public.weapons(
 );
 
 CREATE TABLE public.weapon_range(
+    weapon_id integer,
     normal integer,
     long integer
 );

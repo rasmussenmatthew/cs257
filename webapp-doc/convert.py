@@ -81,6 +81,7 @@ def make_spell_measurments_table():
     return spell_dict 
 
 
+
 def main():
     spell_dict = make_spells_table()
     spell_measurments_dict = make_spell_measurments_table()
