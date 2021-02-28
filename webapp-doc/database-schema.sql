@@ -15,6 +15,9 @@ CREATE TABLE public.weapons(
     properties text,
     two_handed_dmg text
 );
+'''
+thrown_range??!?!?!?!?!
+'''
 
 CREATE TABLE public.weapon_range(
     weapon_id integer,
