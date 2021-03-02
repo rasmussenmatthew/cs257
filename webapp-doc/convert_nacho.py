@@ -17,8 +17,9 @@ def make_armor_table():
                 
                 split_string = second_half.split(':')
                 cost_unit = split_string[1]
+                '''cost_unit = cost_unit[:-1]'''
       
-                cost = str(cost_quantity) + cost_unit
+                cost = cost_quantity + cost_unit
             else:
                 cost = None
             weight = row[6]
@@ -74,7 +75,7 @@ def make_tools_table():
                 split_string = second_half.split(':')
                 cost_unit = split_string[1]
       
-                cost = str(cost_quantity) + cost_unit
+                cost = cost_quantity + cost_unit
             else:
                 cost = None
             weight = row[6]
@@ -108,7 +109,7 @@ def make_gear_table():
                 split_string = second_half.split(':')
                 cost_unit = split_string[1]
       
-                cost = str(cost_quantity) + cost_unit
+                cost = cost_quantity + cost_unit
             else:
                 cost = None
             weight = row[6]
