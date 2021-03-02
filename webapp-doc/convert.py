@@ -93,7 +93,6 @@ def make_weapon_table():
                 weight = row[7]
                 weapon_category = row[13]
 
-
                 split_string_dmg = row[16].split(',')
                 first_section = split_string_dmg[0]
                 last_section = split_string_dmg[2]
@@ -104,10 +103,19 @@ def make_weapon_table():
                 damage_type = split_string_dmg[1]
                 #damage_type = long_range[:-1]
 
-                properties = row[18]
-                #ammuniation and loading are 'name :' first
-                
-
+                properties = []
+                properties_string = row[18]
+                #ammunition and loading are 'name :' first
+                properties_string = properties_string.split(',')
+                for split_string in range(len(properties_string):
+                    if split_string % 2 != 0:
+                        if 'loading' in properties_string[split_string]:
+                            properties.append('Loading')
+                        if 'ammunition' in properties_string[split_string]:
+                            properties.append('Ammunition')
+                        else:
+                            new_split = properties_string[split_string].split(':')
+                            properties.append(new_split[1])
 
                 split_string_2h_dmg = row[19]
                 split_string_2h_dmg = split_string_2h_dmg.split(',')
