@@ -170,50 +170,51 @@ def make_armor_table():
         csv_reader = csv.reader(csv_file, delimiter=',')
         headers = next(csv_reader)
         for row in csv_reader:
-            armor_name = row[3]
-            cost_info = row[6]
-            if cost_info != "":
-                split_string = cost_info.split(',')
-                first_half = split_string[0]
-                second_half = split_string[1]
+            if "armor" in row[4]:
+                armor_name = row[3]
+                cost_info = row[6]
+                if cost_info != "":
+                    split_string = cost_info.split(',')
+                    first_half = split_string[0]
+                    second_half = split_string[1]
 
-                split_string = first_half.split(':')
-                cost_quantity = split_string[1]
-                
-                split_string = second_half.split(':')
-                cost_unit = split_string[1]
-                '''cost_unit = cost_unit[:-1]'''
+                    split_string = first_half.split(':')
+                    cost_quantity = split_string[1]
+    
+                    split_string = second_half.split(':')
+                    cost_unit = split_string[1]
+                    cost_unit = cost_unit[:-1]
       
-                cost = cost_quantity + cost_unit
-            else:
-                cost = None
-            weight = row[7]
-            str_minimum = row[22]
-            stealth_disadvantage = row[23]
-            armor_class = row[21]
-            armor_category = row[20]
-            if armor_class != "":
-                split_string = armor_class.split(',')
-                first_third = split_string[0]
-                second_third = split_string[1]
-                third_third = split_string[2]
+                    cost = cost_quantity + cost_unit
+                else:
+                    cost = None
+                weight = row[7]
+                str_minimum = row[22]
+                stealth_disadvantage = row[23]
+                armor_class = row[21]
+                armor_category = row[20]
+                if armor_class != "":
+                    split_string = armor_class.split(',')
+                    first_third = split_string[0]
+                    second_third = split_string[1]
+                    third_third = split_string[2]
 
-                split_string = first_third.split(':')
-                base_armor_class = split_string[1]
+                    split_string = first_third.split(':')
+                    base_armor_class = split_string[1]
 
-                split_string = second_third.split(':')
-                dex_bonus = split_string[1]
+                    split_string = second_third.split(':')
+                    dex_bonus = split_string[1]
 
-                split_string = second_third.split(':')
-                max_bonus = split_string[1]
+                    split_string = second_third.split(':')
+                    max_bonus = split_string[1]
 
-            else:
-                base_armor_class = None
-                dex_bonus = None
-                max_bonus = None
+                else:
+                    base_armor_class = None
+                    dex_bonus = None
+                    max_bonus = None
 
-            if armor_name not in armor_dict:
-                armor_dict[armor_name] = [cost, weight, str_minimum, stealth_disadvantage, base_armor_class, dex_bonus, max_bonus, armor_category] 
+                if armor_name not in armor_dict:
+                    armor_dict[armor_name] = [cost, weight, str_minimum, stealth_disadvantage, base_armor_class, dex_bonus, max_bonus, armor_category] 
  
     with open('armor_new.csv', 'w', newline = '') as new_csv_file:
         writer = csv.writer(new_csv_file, delimiter=',')
@@ -227,28 +228,31 @@ def make_tools_table():
         csv_reader = csv.reader(csv_file, delimiter=',')
         headers = next(csv_reader)
         for row in csv_reader:
-            tool_name = row[3]
-            cost_info = row[6]
-            if cost_info != "":
-                split_string = cost_info.split(',')
-                first_half = split_string[0]
-                second_half = split_string[1]
+            if "tools" in row[4]:
+                tool_name = row[3]
+                cost_info = row[6]
+                if cost_info != "":
+                    split_string = cost_info.split(',')
+                    first_half = split_string[0]
+                    second_half = split_string[1]
 
-                split_string = first_half.split(':')
-                cost_quantity = split_string[1]
-                
-                split_string = second_half.split(':')
-                cost_unit = split_string[1]
+                    split_string = first_half.split(':')
+                    cost_quantity = split_string[1]
       
-                cost = cost_quantity + cost_unit
-            else:
-                cost = None
-            weight = row[7]
-            tool_category = row[10]
-            tool_description = row[9]
-            
-            if tool_name not in tools_dict:
-                tools_dict[tool_name] = [cost, weight, tool_description, tool_category]
+                    split_string = second_half.split(':')
+                    cost_unit = split_string[1]
+                    cost_unit = cost_unit[:-1]
+                    
+                    cost = cost_quantity + cost_unit
+                else:
+                    cost = None
+                weight = row[7]
+                tool_category = row[10]
+                tool_description = row[9]
+                tool_description = tool_description[1:-1]
+                    
+                if tool_name not in tools_dict:
+                    tools_dict[tool_name] = [cost, weight, tool_description, tool_category]
     with open('tools_new.csv', 'w', newline = '') as new_csv_file:
         writer = csv.writer(new_csv_file, delimiter=',')
         for key in tools_dict:
@@ -261,28 +265,31 @@ def make_gear_table():
         csv_reader = csv.reader(csv_file, delimiter=',')
         headers = next(csv_reader)
         for row in csv_reader:
-            gear_name = row[3]
-            cost_info = row[6]
-            if cost_info != "":
-                split_string = cost_info.split(',')
-                first_half = split_string[0]
-                second_half = split_string[1]
+            if "gear" in row[4]:
+                gear_name = row[3]
+                cost_info = row[6]
+                if cost_info != "":
+                    split_string = cost_info.split(',')
+                    first_half = split_string[0]
+                    second_half = split_string[1]
 
-                split_string = first_half.split(':')
-                cost_quantity = split_string[1]
-                
-                split_string = second_half.split(':')
-                cost_unit = split_string[1]
+                    split_string = first_half.split(':')
+                    cost_quantity = split_string[1]
+                    
+                    split_string = second_half.split(':')
+                    cost_unit = split_string[1]
+                    cost_unit = cost_unit[:-1]
       
-                cost = cost_quantity + cost_unit
-            else:
-                cost = None
-            weight = row[7]
-            gear_description = row[9]
-            gear_quantity = row[12]
-            
-            if gear_name not in gear_dict:
-                gear_dict[gear_name] = [cost, weight, gear_description, gear_quantity]
+                    cost = cost_quantity + cost_unit
+                else:
+                    cost = None
+                weight = row[7]
+                gear_description = row[9]
+                gear_description = gear_description[1:-1]
+                gear_quantity = row[12]
+                
+                if gear_name not in gear_dict:
+                    gear_dict[gear_name] = [cost, weight, gear_description, gear_quantity]
 
     with open('gear_new.csv', 'w', newline = '') as new_csv_file:
         writer = csv.writer(new_csv_file, delimiter=',')
@@ -296,43 +303,46 @@ def make_mounts_table():
         csv_reader = csv.reader(csv_file, delimiter=',')
         headers = next(csv_reader)
         for row in csv_reader:
-            mount_name = row[3]
-            cost_info = row[6]
-            if cost_info != "":
-                split_string = cost_info.split(',')
-                first_half = split_string[0]
-                second_half = split_string[1]
+            if "mounts" in row[4]:
+                mount_name = row[3]
+                cost_info = row[6]
+                if cost_info != "":
+                    split_string = cost_info.split(',')
+                    first_half = split_string[0]
+                    second_half = split_string[1]
 
-                split_string = first_half.split(':')
-                cost_quantity = split_string[1]
-                
-                split_string = second_half.split(':')
-                cost_unit = split_string[1]
+                    split_string = first_half.split(':')
+                    cost_quantity = split_string[1]
+                    
+                    split_string = second_half.split(':')
+                    cost_unit = split_string[1]
+                    cost_unit = cost_unit[:-1]
       
-                cost = cost_quantity + cost_unit
-            else:
-                cost = None
-            weight = row[7]
-            vehicle_category = row[11]
-            speed = row[25]
-            if speed != "":
-                split_string = speed.split(',')
-                first_half = split_string[0]
-                second_half = split_string[1]
+                    cost = cost_quantity + cost_unit
+                else:
+                    cost = None
+                weight = row[7]
+                vehicle_category = row[11]
+                speed = row[25]
+                speed = speed[1:-1]
+                if speed != "":
+                    split_string = speed.split(',')
+                    first_half = split_string[0]
+                    second_half = split_string[1]
 
-                split_string = first_half.split(':')
-                speed_quantity = split_string[1]
+                    split_string = first_half.split(':')
+                    speed_quantity = split_string[1]
        
-                split_string = second_half.split(':')
-                speed_unit = split_string[1]
+                    split_string = second_half.split(':')
+                    speed_unit = split_string[1]
+                    
+                    speed = speed_quantity + speed_unit
+                else:
+                    speed = None
+                capacity = row[26]
                 
-                speed = speed_quantity + speed_unit
-            else:
-                speed = None
-            capacity = row[26]
-            
-            if mount_name not in mounts_dict:
-                mounts_dict[mount_name] = [cost, weight, vehicle_category, speed, capacity]
+                if mount_name not in mounts_dict:
+                    mounts_dict[mount_name] = [cost, weight, vehicle_category, speed, capacity]
 
     with open('mounts_new.csv', 'w', newline = '') as new_csv_file:
         writer = csv.writer(new_csv_file, delimiter=',')
