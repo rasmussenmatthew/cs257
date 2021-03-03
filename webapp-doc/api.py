@@ -42,3 +42,34 @@ def get_spells():
                     {'spell_name':'fireball', 'spell_description':'giant exploding ball of fire', 'components':'[v,s]', 'ritual':'FALSE'}]
     '''
     return json.dumps(spells_list)
+
+@api.route('/spells/classes/<class_name>')
+def get_spells_for_class(class_name):
+    # Pay special attention to quotes! Originally not working when using single quotes on outside and double quotes for like clause
+    query = ''' 
+            SELECT spell_name, classes FROM spells WHERE classes LIKE '%Bard%' LIMIT 10; 
+            '''
+    spells_list = []
+    try:
+        connection = psycopg2.connect(database=database, user=user, password=password)
+    except Exception as e:
+        print(e)
+        exit()
+
+    try:
+        cursor = connection.cursor()
+        cursor.execute(query)
+    except Exception as e:
+        print(e)
+        exit()
+
+    for row in cursor:
+        spells_dictionary = {'spell_name' : row[0], 'classes' : row[1]}
+        spells_list.append(spells_dictionary)
+        
+    connection.close()
+    '''
+    spells_list = [{'spell_name':'acid arrow', 'spell_description':'fire an acid arrow', 'components':'[v,s]', 'ritual':'FALSE'},
+                    {'spell_name':'fireball', 'spell_description':'giant exploding ball of fire', 'components':'[v,s]', 'ritual':'FALSE'}]
+    '''
+    return json.dumps(spells_list)

@@ -15,8 +15,8 @@ def make_spells_table():
         headers = next(csv_reader)
         for row in csv_reader:
             spell_name = row[3]
-            spell_description = row[4]
-            higher_level = row[5]
+            spell_description = row[4][1:-1]
+            higher_level = row[5][1:-1]
             components = row[7]
             material = row[8]
             ritual = row[9]
@@ -26,8 +26,17 @@ def make_spells_table():
             spell_level = row[13]
             attack_type = row[14]
             damage_information = row[15]
-            school = row[16]
-            classes = row[17]
+            school_info = row[16]
+            split_string = school_info.split(',')[0]
+            split_string = split_string.split(':')
+            school = split_string[1]
+            classes_info = row[17]
+            classes = ''
+            split_string = classes_info.split(',')
+            for string in split_string:
+                if 'url' not in string:
+                    class_name = string.split(':')
+                    classes += class_name[1]
             dc_information = row[20]
             heal_at_level = row[21]
             if spell_name not in spell_dict:
