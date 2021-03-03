@@ -97,10 +97,9 @@ def make_weapon_table():
                     last_section = split_string_dmg[2]
                     split_string_dmg = first_section.split(':')
                     damage_die = split_string_dmg[1]
-                    #damage_die = damage_die[2:-1]
                     split_string_dmg = last_section.split(':')
                     damage_type = split_string_dmg[1]
-                    #damage_type = long_range[:-1]
+                    damage_type = damage_type[:-2]
 
                 properties = []
                 properties_string = row[18]
@@ -108,13 +107,24 @@ def make_weapon_table():
                 properties_string = properties_string.split(',')
                 for split_string in range(len(properties_string)):
                     if split_string % 2 != 0:
-                        if 'loading' in properties_string[split_string]:
-                            properties.append('Loading')
                         if 'ammunition' in properties_string[split_string]:
                             properties.append('Ammunition')
-                        else:
+                        if 'loading' in properties_string[split_string]:
+                            properties.append('Loading')
+                        if 'ammunition' or 'loading' not in properties_string[split_string]:
                             new_split = properties_string[split_string].split(':')
                             properties.append(new_split[1])
+                for item in properties:
+                    curr_item = item
+                    if "api" in item:
+                        properties.remove(item)
+                    else:
+                        for char in item:
+                            if char == '"' or char == ' ' or char == "}" or char == "]":
+                                new_item = item.replace(char, '')
+                            
+                        properties.remove(curr_item)
+                        properties.append(new_item)
                 
                 split_string_2h_dmg = row[19]
                 if split_string_2h_dmg != "":
@@ -122,7 +132,8 @@ def make_weapon_table():
                     first_section = split_string_2h_dmg[0]
                     split_string_2h_dmg = first_section.split(':')
                     two_handed_dmg = split_string_2h_dmg[1]
-                    #two_handed_dmg = two_handed_dmg[2:-1]
+                else:
+                    two_handed_dmg = None 
 
                 if weapon_name not in weapon_dict:
                     weapon_dict[weapon_name] = [len(weapon_dict) + 1, cost, weight, weapon_category, damage_die, damage_type, properties, two_handed_dmg]
