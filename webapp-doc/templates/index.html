@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='webapp.css') }}" />
-    <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}" defer></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <title>CS 257: Software Design</title>
 </head>
@@ -20,18 +20,18 @@
         </div>
         <div class = "side_bar">
             <ul>
-                <li><a href="">Spells</a></li>
+                <li><button id="spells">Spells</button></li>
                 <ul>
-                    <li><a href=""> Bard </a></li>
-                    <li><a href=""> Cleric </a></li>
-                    <li><a href=""> Druid </a></li>
-                    <li><a href=""> Paladin </a></li>
-                    <li><a href=""> Ranger </a></li>
-                    <li><a href=""> Sorcerer </a></li>
-                    <li><a href=""> Wizard </a></li>
-                    <li><a href=""> Warlock </a></li>
+                    <li><button id="bard"> Bard </button></li>
+                    <li><button id="cleric"> Cleric </button></li>
+                    <li><button id="druid"> Druid </button></li>
+                    <li><button id="paladin"> Paladin </button></li>
+                    <li><button id="ranger"> Ranger </button></li>
+                    <li><button id="sorcerer"> Sorcerer </button></li>
+                    <li><button id="wizard"> Wizard </button></li>
+                    <li><button id="warlock"> Warlock </button></li>
                 </ul>
-                <li><a href="">Equipment</a></li>
+                <li><button id="equipment">Equipment</button></li>
             </ul>
         </div>
         <div class = "content">

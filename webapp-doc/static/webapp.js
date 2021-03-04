@@ -6,13 +6,16 @@
  * A little bit of Javascript for the web app sample for CS257.
  */
 
-window.onload = initialize;
 
-function initialize() {
-    var class_name = get_class();
-    console.log(class_name)
-    get_spells_for_class(class_name);
-}
+document.getElementById('spells').addEventListener('click', get_spells);
+document.getElementById('bard').addEventListener('click', function() {get_spells_for_class('bard')});
+document.getElementById('cleric').addEventListener('click', function() {get_spells_for_class('cleric')});
+document.getElementById('druid').addEventListener('click', function() {get_spells_for_class('druid')});
+document.getElementById('paladin').addEventListener('click', function() {get_spells_for_class('paladin')});
+document.getElementById('ranger').addEventListener('click', function() {get_spells_for_class('ranger')});
+document.getElementById('sorcerer').addEventListener('click', function() {get_spells_for_class('sorcerer')});
+document.getElementById('wizard').addEventListener('click', function() {get_spells_for_class('wizard')});
+document.getElementById('warlock').addEventListener('click', function() {get_spells_for_class('warlock')});
 
 function get_class() {
     var pathname = window.location.pathname;
@@ -97,8 +100,32 @@ function get_spells_for_class(class_name) {
     });
 }
 
+function get_equipment() {
+    var url = getAPIBaseURL() + '/equipment';
 
+    fetch(url, {method: 'get'})
 
+    .then((response) => response.json())
 
+    .then(function(equipments) {
+        var listBody = '';
+        for (var k = 0; k < equipments.length; k++) {
+            var equipment = equipments[k];
+            listBody += '<li>' + equipment['spell_name']
+                      + ', ' + equipment['spell_description']
+                      + '-' + equipment['components']
+                      + ', ' + equipment['ritual']
+                      + '</li>\n';
+        }
+
+        var spellListElement = document.getElementById('spell_list');
+        if (spellListElement) {
+            spellListElement.innerHTML = listBody;
+        }
+    })
+
+    .catch(function(error) {
+        console.log(error);
+    });
 
 }

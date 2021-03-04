@@ -47,7 +47,7 @@ def get_spells():
 def get_spells_for_class(class_name):
     # Pay special attention to quotes! Originally not working when using single quotes on outside and double quotes for like clause
     like_arguments = '%' + class_name + '%'
-    query = '''SELECT spell_name, classes 
+    query = '''SELECT spell_name, spell_description, components, ritual 
                FROM spells 
                WHERE classes LIKE %s LIMIT 10 ''' 
     spells_list = []
@@ -57,7 +57,7 @@ def get_spells_for_class(class_name):
         cursor = connection.cursor()
         cursor.execute(query, [like_arguments])
         for row in cursor:
-            spells_dictionary = {'spell_name' : row[0], 'classes' : row[1]}
+            spells_dictionary = {'spell_name' : row[0], 'spell_description' : row[1], 'components' : row[2], 'ritual' : row[3]}
             spells_list.append(spells_dictionary)
         cursor.close()
         connection.close()
@@ -69,3 +69,23 @@ def get_spells_for_class(class_name):
                     {'spell_name':'fireball', 'spell_description':'giant exploding ball of fire', 'components':'[v,s]', 'ritual':'FALSE'}]
     '''
     return json.dumps(spells_list)
+
+@api.route('/equipment')
+def get_equipment() {
+    try:
+        connection = psycopg2.connect(database=database, user=user, password=password)
+        cursor = connection.cursor()
+        query = 'SELECT spell_name, spell_description, components, ritual FROM spells LIMIT 10'
+        cursor.execute(query)
+
+    except Exception as e:
+        print(e)
+        exit()
+    equipment_list = []
+    for row in cursor:
+        spells_dictionary = {'spell_name' : row[0], 'spell_description' : row[1], 'components' : row[2], 'ritual' : row[3]}
+        spells_list.append(spells_dictionary)
+        
+    connection.close()
+ 
+}
