@@ -49,7 +49,7 @@ def get_spells_for_class(class_name):
     like_arguments = '%' + class_name + '%'
     query = '''SELECT spell_name, classes 
                FROM spells 
-               WHERE classes LIKE %s ''' 
+               WHERE classes LIKE %s LIMIT 10 ''' 
     spells_list = []
 
     try:
