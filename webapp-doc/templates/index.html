@@ -12,11 +12,13 @@
 <body>
     <div class = "wrapper">
         <div class = "header">
-            <h3>Web App Home Page</h3>
-            <form class="d-flex">
-              <div class="search"><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></div>
-              <button class="btn btn-outline-success" type="submit"> Search </button>
-            </form> 
+            <h3>DnD Spell/Equipment Searcher</h3>
+            <div class = "search_bar">
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit"> Search </button>
+                </form> 
+            </div>
         </div>
         <div class = "side_bar">
             <ul>
@@ -35,7 +37,7 @@
             </ul>
         </div>
         <div class = "content">
-            <h3>One other page</h3>   
+            <h3 id="content_label"> Welcome to our DnD Page! </h3>   
             <ul id="spell_list">
             </ul>
         </div>

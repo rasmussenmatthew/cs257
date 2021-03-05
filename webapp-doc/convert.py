@@ -208,8 +208,8 @@ def make_armor_table():
                     cost = cost_quantity + cost_unit
                 else:
                     cost = None
-                weight = row[7]
-                str_minimum = row[22]
+                weight = int(row[7][:-2])
+                str_minimum = int(row[22][:-2])
                 stealth_disadvantage = row[23]
                 armor_class = row[21]
                 armor_category = row[20]
@@ -225,9 +225,13 @@ def make_armor_table():
                     split_string = second_third.split(':')
                     dex_bonus = split_string[1]
 
-                    split_string = second_third.split(':')
-                    max_bonus = split_string[1]
-
+                    split_string = third_third.split(':')
+                    max_bonus = split_string[1][:-1]
+                    if max_bonus == ' None':
+                        max_bonus = None
+                    else:
+                        max_bonus = int(max_bonus)
+                    print (type(max_bonus))
                 else:
                     base_armor_class = None
                     dex_bonus = None
@@ -266,7 +270,7 @@ def make_tools_table():
                     cost = cost_quantity + cost_unit
                 else:
                     cost = None
-                weight = row[7]
+                weight = int(row[7][:-2])
                 tool_category = row[10]
                 tool_description = row[9]
                 tool_description = tool_description[1:-1]
@@ -303,10 +307,10 @@ def make_gear_table():
                     cost = cost_quantity + cost_unit
                 else:
                     cost = None
-                weight = row[7]
+                weight = row[7][:-2]
                 gear_description = row[9]
                 gear_description = gear_description[1:-1]
-                gear_quantity = row[12]
+                gear_quantity = row[12][:-2]
                 
                 if gear_name not in gear_dict:
                     gear_dict[gear_name] = [cost, weight, gear_description, gear_quantity]
@@ -341,7 +345,7 @@ def make_mounts_table():
                     cost = cost_quantity + cost_unit
                 else:
                     cost = None
-                weight = row[7]
+                weight = row[7][:-2]
                 vehicle_category = row[11]
                 speed = row[25]
                 speed = speed[1:-1]

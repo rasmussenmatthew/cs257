@@ -71,21 +71,21 @@ def get_spells_for_class(class_name):
     return json.dumps(spells_list)
 
 @api.route('/equipment')
-def get_equipment() {
+def get_equipment():
+    equipment_list = []
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
         cursor = connection.cursor()
-        query = 'SELECT spell_name, spell_description, components, ritual FROM spells LIMIT 10'
+        query = '''SELECT tools.name, tools.cost, tools.weight FROM tools'''
         cursor.execute(query)
-
+        for row in cursor:
+            equipment_dictionary = {'tool_name' : row[0], 'tool_cost' : row[1], 'tool_weight' : row[2]}
+            equipment_list.append(equipment_dictionary)
+     
     except Exception as e:
         print(e)
         exit()
-    equipment_list = []
-    for row in cursor:
-        spells_dictionary = {'spell_name' : row[0], 'spell_description' : row[1], 'components' : row[2], 'ritual' : row[3]}
-        spells_list.append(spells_dictionary)
-        
     connection.close()
+    return json.dumps(equipment_list)
  
-}
+

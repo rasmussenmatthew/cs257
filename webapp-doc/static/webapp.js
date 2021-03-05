@@ -8,14 +8,15 @@
 
 
 document.getElementById('spells').addEventListener('click', get_spells);
-document.getElementById('bard').addEventListener('click', function() {get_spells_for_class('bard')});
-document.getElementById('cleric').addEventListener('click', function() {get_spells_for_class('cleric')});
-document.getElementById('druid').addEventListener('click', function() {get_spells_for_class('druid')});
-document.getElementById('paladin').addEventListener('click', function() {get_spells_for_class('paladin')});
-document.getElementById('ranger').addEventListener('click', function() {get_spells_for_class('ranger')});
-document.getElementById('sorcerer').addEventListener('click', function() {get_spells_for_class('sorcerer')});
-document.getElementById('wizard').addEventListener('click', function() {get_spells_for_class('wizard')});
-document.getElementById('warlock').addEventListener('click', function() {get_spells_for_class('warlock')});
+document.getElementById('bard').addEventListener('click', function() {get_spells_for_class('Bard')});
+document.getElementById('cleric').addEventListener('click', function() {get_spells_for_class('Cleric')});
+document.getElementById('druid').addEventListener('click', function() {get_spells_for_class('Druid')});
+document.getElementById('paladin').addEventListener('click', function() {get_spells_for_class('Paladin')});
+document.getElementById('ranger').addEventListener('click', function() {get_spells_for_class('Ranger')});
+document.getElementById('sorcerer').addEventListener('click', function() {get_spells_for_class('Sorcerer')});
+document.getElementById('wizard').addEventListener('click', function() {get_spells_for_class('Wizard')});
+document.getElementById('warlock').addEventListener('click', function() {get_spells_for_class('Warlock')});
+document.getElementById('equipment').addEventListener('click', get_equipment);
 
 function get_class() {
     var pathname = window.location.pathname;
@@ -60,6 +61,8 @@ function get_spells() {
                       + '</li>\n';
         }
 
+        var contentLabelElement = document.getElementById('content_label');
+        contentLabelElement.innerHTML = 'All spells';
         var spellListElement = document.getElementById('spell_list');
         if (spellListElement) {
             spellListElement.innerHTML = listBody;
@@ -88,7 +91,9 @@ function get_spells_for_class(class_name) {
                       + ', ' + spell['ritual']
                       + '</li>\n';
         }
-
+        
+        var contentLabelElement = document.getElementById('content_label');
+        contentLabelElement.innerHTML = class_name + ' spells';
         var spellListElement = document.getElementById('spell_list');
         if (spellListElement) {
             spellListElement.innerHTML = listBody;
@@ -111,13 +116,13 @@ function get_equipment() {
         var listBody = '';
         for (var k = 0; k < equipments.length; k++) {
             var equipment = equipments[k];
-            listBody += '<li>' + equipment['spell_name']
-                      + ', ' + equipment['spell_description']
-                      + '-' + equipment['components']
-                      + ', ' + equipment['ritual']
+            listBody += '<li>' + equipment['tool_name']
+                      + ', ' + equipment['tool_cost']
+                      + ', ' + equipment['tool_weight']
                       + '</li>\n';
         }
-
+        var contentLabelElement = document.getElementById('content_label');
+        contentLabelElement.innerHTML = 'Equipment';
         var spellListElement = document.getElementById('spell_list');
         if (spellListElement) {
             spellListElement.innerHTML = listBody;

@@ -44,22 +44,22 @@ CREATE TABLE public.tools(
     description text,
     tool_category text
 );
-
+'''gear and mounts both have null values for weight/quantity so I made them text, we may want to change this'''
 CREATE TABLE public.adventuring_gear(
     name text,
     cost text,
-    weight integer,
+    weight text,
     description text,
-    quantity integer
+    quantity text
 );
 
 CREATE TABLE public.mounts(
     name text,
     cost text,
-    weight integer,
+    weight text,
     vehicle_category text,
     speed text,
-    capacity integer
+    capacity text
 );
 
 CREATE TABLE public.spells(
