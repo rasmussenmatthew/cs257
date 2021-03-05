@@ -12,6 +12,7 @@
     grid-gap: 1em;
     grid-auto-rows: minmax(1fr, auto);
 }
+
 .search_bar{
     grid-column: 3 / 4;
     grid-row: 1;
@@ -36,7 +37,7 @@
     background-color: blue;
 }
 
-button {
+.bttn {
     background-color: white;
     color: black;
     border: 2px solid black;
@@ -47,7 +48,7 @@ button {
     display: block;
 }
 
-button:hover {
+.active, .bttn:hover {
     background-color: red;
     color: black;
     border: 2px solid red;

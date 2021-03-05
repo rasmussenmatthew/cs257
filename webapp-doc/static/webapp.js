@@ -18,6 +18,20 @@ document.getElementById('wizard').addEventListener('click', function() {get_spel
 document.getElementById('warlock').addEventListener('click', function() {get_spells_for_class('Warlock')});
 document.getElementById('equipment').addEventListener('click', get_equipment);
 
+var sideBar = document.getElementById("side_bar");
+var bttns = sideBar.getElementsByClassName("bttn");
+
+for (var i = 0; i < bttns.length; i++) {
+    bttns[i].addEventListener('click', function () {
+        var current = document.getElementsByClassName("active");
+        if (current.length > 0) {
+            current[0].className = current[0].className.replace(" active", "");
+        }
+        this.className += " active";
+    });
+}
+
+
 function get_class() {
     var pathname = window.location.pathname;
     var paths = pathname.split('/');
