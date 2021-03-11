@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.2 (Ubuntu 12.2-4)
--- Dumped by pg_dump version 12.2 (Ubuntu 12.2-4)
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,6 +19,50 @@ SET row_security = off;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: adventuring_gear; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.adventuring_gear (
+    name text,
+    cost text,
+    weight text,
+    description text,
+    quantity text
+);
+
+
+--
+-- Name: armor; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.armor (
+    name text,
+    cost text,
+    weight integer,
+    str_minimum integer,
+    stealth_disadvantage boolean,
+    base_armor_class integer,
+    dex_bonus boolean,
+    max_bonus integer,
+    armor_catgegory text
+);
+
+
+--
+-- Name: mounts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.mounts (
+    name text,
+    cost text,
+    weight text,
+    vehicle_category text,
+    speed text,
+    capacity text
+);
+
 
 --
 -- Name: spells; Type: TABLE; Schema: public; Owner: -
@@ -43,6 +87,210 @@ CREATE TABLE public.spells (
     dc_information text,
     heal_at_level text
 );
+
+
+--
+-- Name: tools; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.tools (
+    name text,
+    cost text,
+    weight integer,
+    description text,
+    tool_category text
+);
+
+
+--
+-- Name: weapons; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.weapons (
+    id integer,
+    name text,
+    cost text,
+    weight integer,
+    weapon_category text,
+    damage_die text,
+    damage_type text,
+    properties text,
+    two_handed_dmg text
+);
+
+
+--
+-- Data for Name: adventuring_gear; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.adventuring_gear (name, cost, weight, description, quantity) FROM stdin;
+Abacus	 2 'gp'	2		
+Acid (vial)	 25 'gp'	1	'As an action, you can splash the contents of this vial onto a creature within 5 feet of you or throw the vial up to 20 feet, shattering it on impact. In either case, make a ranged attack against a creature or object, treating the acid as an improvised weapon.', 'On a hit, the target takes 2d6 acid damage.'	
+Alchemist's fire (flask)	 50 'gp'	1	'This sticky, adhesive fluid ignites when exposed to air.', "As an action, you can throw this flask up to 20 feet, shattering it on impact. Make a ranged attack against a creature or object, treating the alchemist's fire as an improvised weapon.", 'On a hit, the target takes 1d4 fire damage at the start of each of its turns. A creature can end this damage by using its action to make a DC 10 Dexterity check to extinguish the flames.'	
+Amulet	 5 'gp'	1	'A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic.', 'Appendix B lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.'	
+Antitoxin (vial)	 50 'gp'	0	'A creature that drinks this vial of liquid gains advantage on saving throws against poison for 1 hour. It confers no benefit to undead or constructs.'	
+Arrow	 1 'gp'	1		20
+Backpack	 2 'gp'	5		
+Ball bearings (bag of 1,000)	 1 'gp'	2	'As an action, you can spill these tiny metal balls from their pouch to cover a level, square area that is 10 feet on a side.', 'A creature moving across the covered area must succeed on a DC 10 Dexterity saving throw or fall prone.', "A creature moving through the area at half speed doesn't need to make the save."	
+Barrel	 2 'gp'	70		
+Basket	 4 'sp'	2		
+Bedroll	 1 'gp'	7		
+Bell	 1 'gp'	0		
+Blanket	 5 'sp'	3		
+Block and tackle	 1 'gp'	5	'A set of pulleys with a cable threaded through them and a hook to attach to objects, a block and tackle allows you to hoist up to four times the weight you can normally lift.'	
+Blowgun needle	 1 'gp'	1		50
+Book	 25 'gp'	5	'A book might contain poetry, historical accounts, information pertaining to a particular field of lore, diagrams and notes on gnomish contraptions, or just about anything else that can be represented using text or pictures. A book of spells is a spellbook (described later in this section).'	
+Bottle, glass	 2 'gp'	2		
+Bucket	 5 'cp'	2		
+Burglar's Pack	 16 'gp'			
+Caltrops	 5 'cp'	2	'As an action, you can spread a bag of caltrops to cover a square area that is 5 feet on a side.', 'Any creature that enters the area must succeed on a DC 15 Dexterity saving throw or stop moving this turn and take 1 piercing damage.', "Taking this damage reduces the creature's walking speed by 10 feet until the creature regains at least 1 hit point.", "A creature moving through the area at half speed doesn't need to make the save."	
+Candle	 1 'cp'	0	'For 1 hour, a candle sheds bright light in a 5-foot radius and dim light for an additional 5 feet.'	
+Case, crossbow bolt	 1 'gp'	1	'This wooden case can hold up to twenty crossbow bolts.'	
+Case, map or scroll	 1 'gp'	1	'This cylindrical leather case can hold up to ten rolled-up sheets of paper or five rolled-up sheets of parchment.'	
+Chain (10 feet)	 5 'gp'	10	'A chain has 10 hit points. It can be burst with a successful DC 20 Strength check.'	
+Chalk (1 piece)	 1 'cp'	0		
+Chest	 5 'gp'	25		
+Climber's Kit	 25 'gp'	12	"A climber's kit includes special pitons, boot tips, gloves, and a harness. You can use the climber's kit as an action to anchor yourself; when you do, you can't fall more than 25 feet from the point where you anchored yourself, and you can't climb more than 25 feet away from that point without undoing the anchor."	
+Clothes, common	 5 'sp'	3		
+Clothes, costume	 5 'gp'	4		
+Clothes, fine	 15 'gp'	6		
+Clothes, traveler's	 2 'gp'	4		
+Component pouch	 25 'gp'	2	" A component pouch is a small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost (as indicated in a spell's description)."	
+Crossbow bolt	 1 'gp'	1		20
+Crowbar	 2 'gp'	5	"Using a crowbar grants advantage to Strength checks where the crowbar's leverage can be applied."	
+Crystal	 10 'gp'	1	'An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.'	
+Diplomat's Pack	 39 'gp'			
+Disguise Kit	 25 'gp'	3	'This pouch of cosmetics, hair dye, and small props lets you create disguises that change your physical appearance. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to create a visual disguise.'	
+Dungeoneer's Pack	 12 'gp'			
+Emblem	 5 'gp'	0	'A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic.', 'Appendix B lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.'	
+Entertainer's Pack	 40 'gp'			
+Explorer's Pack	 10 'gp'			
+Fishing tackle	 1 'gp'	4	'This kit includes a wooden rod, silken line, corkwood bobbers, steel hooks, lead sinkers, velvet lures, and narrow netting.'	
+Flask or tankard	 2 'cp'	1		
+Forgery Kit	 15 'gp'	5	'This small box contains a variety of papers and parchments, pens and inks, seals and sealing wax, gold and silver leaf, and other supplies necessary to create convincing forgeries of physical documents. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to create a physical forgery of a document.'	
+Grappling hook	 2 'gp'	4		
+Hammer	 1 'gp'	3		
+Hammer, sledge	 2 'gp'	10		
+Healer's Kit	 5 'gp'	3	'This kit is a leather pouch containing bandages, salves, and splints. The kit has ten uses. As an action, you can expend one use of the kit to stabilize a creature that has 0 hit points, without needing to make a Wisdom (Medicine) check.'	
+Herbalism Kit	 5 'gp'	3	'This kit contains a variety of instruments such as clippers, mortar and pestle, and pouches and vials used by herbalists to create remedies and potions. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to identify or apply herbs. Also, proficiency with this kit is required to create antitoxin and potions of healing.'	
+Holy water (flask)	 25 'gp'	1	'As an action, you can splash the contents of this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. In either case, make a ranged attack against a target creature, treating the holy water as an improvised weapon.', 'If the target is a fiend or undead, it takes 2d6 radiant damage.', 'A cleric or paladin may create holy water by performing a special ritual.', 'The ritual takes 1 hour to perform, uses 25 gp worth of powdered silver, and requires the caster to expend a 1st-level spell slot.'	
+Hourglass	 25 'gp'	1		
+Hunting trap	 5 'gp'	25	'When you use your action to set it, this trap forms a saw-toothed steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground.', 'A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take 1d4 piercing damage and stop moving. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet long).', 'A creature can use its action to make a DC 13 Strength check, freeing itself or another creature within its reach on a success. Each failed check deals 1 piercing damage to the trapped creature.'	
+Ink (1 ounce bottle)	 10 'gp'	0		
+Ink pen	 2 'cp'	0		
+Jug or pitcher	 2 'cp'	4		
+Ladder (10-foot)	 1 'sp'	25		
+Lamp	 5 'sp'	1	'A lamp casts bright light in a 15-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil.'	
+Lantern, bullseye	 10 'gp'	2	'A bullseye lantern casts bright light in a 60-foot cone and dim light for an additional 60 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil.'	
+Lantern, hooded	 5 'gp'	2	'A hooded lantern casts bright light in a 30-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. As an action, you can lower the hood, reducing the light to dim light in a 5-foot radius.'	
+Lock	 10 'gp'	1	"A key is provided with the lock. Without the key, a creature proficient with thieves' tools can pick this lock with a successful DC 15 Dexterity check. Your GM may decide that better locks are available for higher prices."	
+Magnifying glass	 100 'gp'	0	'This lens allows a closer look at small objects. It is also useful as a substitute for flint and steel when starting fires. Lighting a fire with a magnifying glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite.', 'A magnifying glass grants advantage on any ability check made to appraise or inspect an item that is small or highly detailed.'	
+Manacles	 2 'gp'	6	'These metal restraints can bind a Small or Medium creature. Escaping the manacles requires a successful DC 20 Dexterity check. Breaking them requires a successful DC 20 Strength check.', "Each set of manacles comes with one key. Without the key, a creature proficient with thieves' tools can pick the manacles' lock with a successful DC 15 Dexterity check. Manacles have 15 hit points."	
+Mess Kit	 2 'sp'	1	'This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl.'	
+Mirror, steel	 5 'gp'	0		
+Oil (flask)	 1 'sp'	1	'Oil usually comes in a clay flask that holds 1 pint.', 'As an action, you can splash the oil in this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. Make a ranged attack against a target creature or object, treating the oil as an improvised weapon.', 'On a hit, the target is covered in oil. If the target takes any fire damage before the oil dries (after 1 minute), the target takes an additional 5 fire damage from the burning oil.', 'You can also pour a flask of oil on the ground to cover a 5-foot-square area, provided that the surface is level.', 'If lit, the oil burns for 2 rounds and deals 5 fire damage to any creature that enters the area or ends its turn in the area. A creature can take this damage only once per turn.'	
+Orb	 20 'gp'	3	'An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.'	
+Paper (one sheet)	 2 'sp'	0		
+Parchment (one sheet)	 1 'sp'	0		
+Perfume (vial)	 5 'gp'	0		
+Pick, miner's	 2 'gp'	10		
+Piton	 5 'cp'	0.		
+Poison, basic (vial)	 100 'gp'	0	'You can use the poison in this vial to coat one slashing or piercing weapon or up to three pieces of ammunition. Applying the poison takes an action. A creature hit by the poisoned weapon or ammunition must make a DC 10 Constitution saving throw or take 1d4 poison damage. Once applied, the poison retains potency for 1 minute before drying.'	
+Poisoner's Kit	 50 'gp'	2	"A poisoner's kit includes the vials, chemicals, and other equipment necessary for the creation of poisons. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to craft or use poisons."	
+Pole (10-foot)	 5 'cp'	7		
+Pot, iron	 2 'gp'	10		
+Potion of healing	 50 'gp'	0	'A character who drinks the magical red fluid in this vial regains 2d4 + 2 hit points. Drinking or administering a potion takes an action.'	
+Pouch	 5 'sp'	1	'A cloth or leather pouch can hold up to 20 sling bullets or 50 blowgun needles, among other things. A compartmentalized pouch for holding spell components is called a component pouch (described earlier in this section).'	
+Priest's Pack	 19 'gp'			
+Quiver	 1 'gp'	1	'A quiver can hold up to 20 arrows.'	
+Ram, portable	 4 'gp'	35	'You can use a portable ram to break down doors. When doing so, you gain a +4 bonus on the Strength check. One other character can help you use the ram, giving you advantage on this check.'	
+Rations (1 day)	 5 'sp'	2	'Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts.'	
+Reliquary	 5 'gp'	2	'A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic.', 'Appendix B lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.'	
+Robes	 1 'gp'	4		
+Rod	 10 'gp'	2	'An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.'	
+Rope, hempen (50 feet)	 1 'gp'	10	'Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.'	
+Rope, silk (50 feet)	 10 'gp'	5	'Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.'	
+Sack	 1 'cp'	0		
+Scale, merchant's	 5 'gp'	3	'A scale includes a small balance, pans, and a suitable assortment of weights up to 2 pounds. With it, you can measure the exact weight of small objects, such as raw precious metals or trade goods, to help determine their worth.'	
+Scholar's Pack	 40 'gp'			
+Sealing wax	 5 'sp'	0		
+Shovel	 2 'gp'	5		
+Signal whistle	 5 'cp'	0		
+Signet ring	 5 'gp'	0		
+Sling bullet	 4 'cp'	1		20
+Soap	 2 'cp'	0		
+Spellbook	 50 'gp'	3	'Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells.'	
+Spike, iron	 1 'sp'	5		
+Sprig of mistletoe	 1 'gp'	0	'A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.'	
+Spyglass	 1000 'gp'	1	'Objects viewed through a spyglass are magnified to twice their size.'	
+Staff	 5 'gp'	4	'An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.'	
+Tent, two-person	 2 'gp'	20	'A simple and portable canvas shelter, a tent sleeps two.'	
+Tinderbox	 5 'sp'	1	'This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch--or anything else with abundant, exposed fuel--takes an action.', 'Lighting any other fire takes 1 minute.'	
+Torch	 1 'cp'	1	'A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional 20 feet. If you make a melee attack with a burning torch and hit, it deals 1 fire damage.'	
+Totem	 1 'gp'	0	'A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.'	
+Vial	 1 'gp'	0		
+Wand	 10 'gp'	1	'An arcane focus is a special item--an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item--designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.'	
+Waterskin	 2 'sp'	5		
+Whetstone	 1 'cp'	1		
+Wooden staff	 5 'gp'	4	'A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.'	
+Yew wand	 10 'gp'	1	'A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.'	
+\.
+
+
+--
+-- Data for Name: armor; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.armor (name, cost, weight, str_minimum, stealth_disadvantage, base_armor_class, dex_bonus, max_bonus, armor_catgegory) FROM stdin;
+\.
+
+
+--
+-- Data for Name: mounts; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.mounts (name, cost, weight, vehicle_category, speed, capacity) FROM stdin;
+Animal Feed (1 day)	 5 'cp'	10	Tack, Harness, and Drawn Vehicles		
+Barding: Breastplate	 1600 'gp'	40	Tack, Harness, and Drawn Vehicles		
+Barding: Chain mail	 300 'gp'	110	Tack, Harness, and Drawn Vehicles		
+Barding: Chain shirt	 200 'gp'	40	Tack, Harness, and Drawn Vehicles		
+Barding: Half plate	 3000 'gp'	80	Tack, Harness, and Drawn Vehicles		
+Barding: Hide	 40 'gp'	24	Tack, Harness, and Drawn Vehicles		
+Barding: Leather	 40 'gp'	20	Tack, Harness, and Drawn Vehicles		
+Barding: Padded	 20 'gp'	16	Tack, Harness, and Drawn Vehicles		
+Barding: Plate	 6000 'gp'	130	Tack, Harness, and Drawn Vehicles		
+Barding: Ring mail	 12 'gp'	80	Tack, Harness, and Drawn Vehicles		
+Barding: Scale mail	 200 'gp'	90	Tack, Harness, and Drawn Vehicles		
+Barding: Splint	 800 'gp'	120	Tack, Harness, and Drawn Vehicles		
+Barding: Studded Leather	 180 'gp'	26	Tack, Harness, and Drawn Vehicles		
+Bit and bridle	 2 'gp'	1	Tack, Harness, and Drawn Vehicles		
+Camel	 50 'gp'		Mounts and Other Animals	 50 'ft/round'	480 lb.
+Carriage	 100 'gp'	600	Tack, Harness, and Drawn Vehicles		
+Cart	 15 'gp'	200	Tack, Harness, and Drawn Vehicles		
+Chariot	 250 'gp'	100	Tack, Harness, and Drawn Vehicles		
+Donkey	 8 'gp'		Mounts and Other Animals	 40 'ft/round'	420 lb.
+Elephant	 200 'gp'		Mounts and Other Animals	 40 'ft/round'	1,320 lb.
+Galley	 30000 'gp'		Waterborne Vehicles	 4 'mph'	
+Horse, draft	 50 'gp'		Mounts and Other Animals	 40 'ft/round'	540 lb.
+Horse, riding	 75 'gp'		Mounts and Other Animals	 60 'ft/round'	480 lb.
+Keelboat	 3000 'gp'		Waterborne Vehicles	 1 'mph'	
+Longship	 10000 'gp'		Waterborne Vehicles	 3 'mph'	
+Mastiff	 25 'gp'		Mounts and Other Animals	 40 'ft/round'	195 lb.
+Mule	 8 'gp'		Mounts and Other Animals	 40 'ft/round'	420 lb.
+Pony	 30 'gp'		Mounts and Other Animals	 40 'ft/round'	225 lb.
+Riding	 10 'gp'	25	Tack, Harness, and Drawn Vehicles		
+Rowboat	 50 'gp'		Waterborne Vehicles	 1.5 'mph'	
+Saddle, Exotic	 60 'gp'	50	Tack, Harness, and Drawn Vehicles		
+Saddle, Military	 20 'gp'	30	Tack, Harness, and Drawn Vehicles		
+Saddle, Pack	 5 'gp'	15	Tack, Harness, and Drawn Vehicles		
+Saddlebags	 4 'gp'	8	Tack, Harness, and Drawn Vehicles		
+Sailing ship	 10000 'gp'		Waterborne Vehicles	 2 'mph'	
+Sled	 20 'gp'	300	Tack, Harness, and Drawn Vehicles		
+Stabling (1 day)	 5 'sp'	0	Tack, Harness, and Drawn Vehicles		
+Wagon	 35 'gp'	400	Tack, Harness, and Drawn Vehicles		
+Warhorse	 400 'gp'		Mounts and Other Animals	 60 'ft/round'	540 lb.
+Warship	 25000 'gp'		Waterborne Vehicles	 2.5 'mph'	
+\.
 
 
 --
@@ -369,6 +617,53 @@ COPY public.spells (id, spell_name, spell_description, higher_level, components,
 317	Wish	['Wish is the mightiest spell a mortal creature can cast. By simply speaking aloud, you can alter the very foundations of reality in accord with your desires.', "The basic use of this spell is to duplicate any other spell of 8th level or lower. You don't need to meet any requirements in that spell, including costly components. The spell simply takes effect.", 'Alternatively, you can create one of the following effects of your choice:', "- You create one object of up to 25,000 gp in value that isn't a magic item. The object can be no more than 300 feet in any dimension, and it appears in an unoccupied space you can see on the ground.", '- You allow up to twenty creatures that you can see to regain all hit points, and you end all effects on them described in the greater restoration spell.', '- You grant up to ten creatures that you can see resistance to a damage type you choose.', "- You grant up to ten creatures you can see immunity to a single spell or other magical effect for 8 hours. For instance, you could make yourself and all your companions immune to a lich's life drain attack.", "- You undo a single recent event by forcing a reroll of any roll made within the last round (including your last turn). Reality reshapes itself to accommodate the new result. For example, a wish spell could undo an opponent's successful save, a foe's critical hit, or a friend's failed save. You can force the reroll to be made with advantage or disadvantage, and you can choose whether to use the reroll or the original roll.", "You might be able to achieve something beyond the scope of the above examples. State your wish to the GM as precisely as possible. The GM has great latitude in ruling what occurs in such an instance; the greater the wish, the greater the likelihood that something goes wrong. This spell might simply fail, the effect you desire might only be partly achieved, or you might suffer some unforeseen consequence as a result of how you worded the wish. For example, wishing that a villain were dead might propel you forward in time to a period when that villain is no longer alive, effectively removing you from the game. Similarly, wishing for a legendary magic item or artifact might instantly transport you to the presence of the item's current owner.", "The stress of casting this spell to produce any effect other than duplicating another spell weakens you. After enduring that stress, each time you cast a spell until you finish a long rest, you take 1d10 necrotic damage per level of that spell. This damage can't be reduced or prevented in any way. In addition, your Strength drops to 3, if it isn't 3 or lower already, for 2d4 days. For each of those days that you spend resting and doing nothing more than light activity, your remaining recovery time decreases by 2 days. Finally, there is a 33 percent chance that you are unable to cast wish ever again if you suffer this stress."]		['V']		f	Instantaneous	f	1 action	9			{'name': 'Conjuration', 'url': '/api/magic-schools/conjuration'}	[{'name': 'Sorcerer', 'url': '/api/classes/sorcerer'}, {'name': 'Wizard', 'url': '/api/classes/wizard'}]		
 318	Word of Recall	['You and up to five willing creatures within 5 feet of you instantly teleport to a previously designated sanctuary. You and any creatures that teleport with you appear in the nearest unoccupied space to the spot you designated when you prepared your sanctuary (see below). If you cast this spell without first preparing a sanctuary, the spell has no effect.', "You must designate a sanctuary by casting this spell within a location, such as a temple, dedicated to or strongly linked to your deity. If you attempt to cast the spell in this manner in an area that isn't dedicated to your deity, the spell has no effect."]		['V']		f	Instantaneous	f	1 action	6			{'name': 'Conjuration', 'url': '/api/magic-schools/conjuration'}	[{'name': 'Cleric', 'url': '/api/classes/cleric'}]		
 319	Zone of Truth	["You create a magical zone that guards against deception in a 15-foot-radius sphere centered on a point of your choice within range. Until the spell ends, a creature that enters the spell's area for the first time on a turn or starts its turn there must make a Charisma saving throw. On a failed save, a creature can't speak a deliberate lie while in the radius. You know whether each creature succeeds or fails on its saving throw.", 'An affected creature is aware of the fate and can avoid answering questions she would normally have responded with a lie. Such a creature can remain evasive in his answers as they remain within the limits of truth.']		['V', 'S']		f	10 minutes	f	1 action	2			{'name': 'Enchantment', 'url': '/api/magic-schools/enchantment'}	[{'name': 'Bard', 'url': '/api/classes/bard'}, {'name': 'Cleric', 'url': '/api/classes/cleric'}, {'name': 'Paladin', 'url': '/api/classes/paladin'}]		
+\.
+
+
+--
+-- Data for Name: tools; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.tools (name, cost, weight, description, tool_category) FROM stdin;
+Alchemist's supplies	 50 'gp'	8	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Bagpipes	 30 'gp'	6	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Brewer's supplies	 20 'gp'	9	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Calligrapher's supplies	 10 'gp'	5	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Carpenter's tools	 8 'gp'	6	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Cartographer's tools	 15 'gp'	6	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Cobbler's tools	 5 'gp'	5	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Cook's utensils	 1 'gp'	8	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Dice set	 1 'sp'	0	'This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist. If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency.'	Gaming Sets
+Drum	 6 'gp'	3	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Dulcimer	 25 'gp'	10	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Flute	 2 'gp'	1	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Glassblower's tools	 30 'gp'	5	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Horn	 3 'gp'	2	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Jeweler's tools	 25 'gp'	2	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Leatherworker's tools	 5 'gp'	5	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Lute	 35 'gp'	2	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Lyre	 30 'gp'	2	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Mason's tools	 10 'gp'	8	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Navigator's tools	 25 'gp'	2	"This set of instruments is used for navigation at sea. Proficiency with navigator's tools lets you chart a ship's course and follow navigation charts. In addition, these tools allow you to add your proficiency bonus to any ability check you make to avoid getting lost at sea."	Other Tools
+Painter's supplies	 10 'gp'	5	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Pan flute	 12 'gp'	2	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Playing card set	 5 'sp'	0	'This item encompasses a wide range of game pieces, including dice and decks of cards (for games such as Three-Dragon Ante). A few common examples appear on the Tools table, but other kinds of gaming sets exist. If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency.'	Gaming Sets
+Potter's tools	 10 'gp'	3	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Shawm	 2 'gp'	1	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Smith's tools	 20 'gp'	8	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Thieves' tools	 25 'gp'	1	'This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets you add your proficiency bonus to any ability checks you make to disarm traps or open locks.'	Other Tools
+Tinker's tools	 50 'gp'	10	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Viol	 30 'gp'	1	'Several of the most common types of musical instruments are shown on the table as examples. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency.'	Musical Instrument
+Weaver's tools	 1 'gp'	5	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+Woodcarver's tools	 1 'gp'	5	"These special tools include the items needed to pursue a craft or trade. The table shows examples of the most common types of tools, each providing items related to a single craft. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."	Artisan's Tools
+\.
+
+
+--
+-- Data for Name: weapons; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.weapons (id, name, cost, weight, weapon_category, damage_die, damage_type, properties, two_handed_dmg) FROM stdin;
 \.
 
 

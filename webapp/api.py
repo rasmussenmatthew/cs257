@@ -88,4 +88,35 @@ def get_equipment():
     connection.close()
     return json.dumps(equipment_list)
  
+@api.route('/help')
+def get_help():
+  return '''
+         REQUEST: /  <br>
+         <br>            
+         RESPONSE: a JSON list of dictionaries each of which containing the title of our tables. <br>
+         <br>
+         REQUEST: /equipment  <br>
+         <br>
+         RESPONSE: a JSON list of dictionaries containing the essential information for every piece of equpimenmt <br>
+         <br>
+         Here are the fields for one of the sections of equipment (Tools): <br>
+           name -- (string) the name of the tool  <br>
+           cost -- (integer) the cost for the tool <br>
+           weight -- (integer) the amount the tool weighs <br>
+         <br>
+         REQUEST: /spells <br>
+         <br>
+         RESPONSE: a JSON list of dictionaries containing the essential information for every spell. <br>
+         <br>
+         Here are the fields for each spell: <br>
+           name -- (string) the name of the spell  <br>
+           description -- (string) Describes the spell <br>
+           components -- (string) Lists the components required to perform the spell (i.e (V) for Verbal) <br>
+           ritual -- (boolean) says whether or not the spell requires a ritual  <br>
+
+
+
+         '''
+
+
 
