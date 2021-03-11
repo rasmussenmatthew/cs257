@@ -15,9 +15,6 @@ CREATE TABLE public.weapons(
     properties text,
     two_handed_dmg text
 );
-'''
-thrown_range??!?!?!?!?!
-'''
 
 CREATE TABLE public.weapon_range(
     weapon_id integer,
@@ -44,7 +41,7 @@ CREATE TABLE public.tools(
     description text,
     tool_category text
 );
-'''gear and mounts both have null values for weight/quantity so I made them text, we may want to change this'''
+
 CREATE TABLE public.adventuring_gear(
     name text,
     cost text,
