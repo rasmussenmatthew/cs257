@@ -70,13 +70,16 @@ def get_spells_for_class(class_name):
     '''
     return json.dumps(spells_list)
 
-@api.route('/equipment')
+@api.route('/equipment/<equipment_type>')
 def get_equipment():
     equipment_list = []
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
         cursor = connection.cursor()
-        query = '''SELECT tools.name, tools.cost, tools.weight FROM tools'''
+        argument = equipment_type 
+        query = '''SELECT name, description, weight, cost 
+               FROM %s 
+               LIMIT 10 ''' 
         cursor.execute(query)
         for row in cursor:
             equipment_dictionary = {'tool_name' : row[0], 'tool_cost' : row[1], 'tool_weight' : row[2]}

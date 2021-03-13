@@ -1,17 +1,17 @@
 1,90 feet,,
 2,60 feet,,
 3,30 feet,,
-4,30 feet,cube, 20
+4,30 feet,cube,20
 5,Self,,
 6,30 feet,,
 7,30 feet,,
 8,30 feet,,
 9,10 feet,,
 10,120 feet,,
-11,Self,sphere, 10
-12,Self,sphere, 10
-13,60 feet,cube, 200
-14,30 feet,sphere, 30
+11,Self,sphere,10
+12,Self,sphere,10
+13,60 feet,cube,200
+14,30 feet,sphere,30
 15,120 feet,,
 16,Touch,,
 17,60 feet,,
@@ -24,35 +24,35 @@
 24,Touch,,
 25,30 feet,,
 26,Touch,,
-27,90 feet,cube, 20
-28,90 feet,line, 100
+27,90 feet,cube,20
+28,90 feet,line,100
 29,30 feet,,
 30,30 feet,,
 31,30 feet,,
 32,Self,,
 33,Self,,
 34,Self,,
-35,Self,cone, 15
-36,120 feet,sphere, 5
-37,60 feet,sphere, 20
+35,Self,cone,15
+36,120 feet,sphere,5
+37,60 feet,sphere,20
 38,150 feet,,
 39,30 feet,,
 40,120 feet,,
-41,150 feet,sphere, 60
+41,150 feet,sphere,60
 42,1 mile,,
 43,Touch,,
-44,120 feet,sphere, 20
-45,Self,cone, 15
+44,120 feet,sphere,20
+45,Self,cone,15
 46,60 feet,,
 47,Self,,
 48,Self,,
 49,Self,,
 50,30 feet,,
-51,Self,cone, 60
-52,90 feet,sphere, 10
+51,Self,cone,60
+52,90 feet,sphere,10
 53,60 feet,,
 54,90 feet,,
-55,90 feet,cube, 10
+55,90 feet,cube,10
 56,90 feet,,
 57,90 feet,,
 58,60 feet,,
@@ -60,28 +60,28 @@
 60,Touch,,
 61,Self,,
 62,Touch,,
-63,300 feet,cube, 100
+63,300 feet,cube,100
 64,Self,,
 65,60 feet,,
 66,30 feet,,
-67,30 feet,cube, 30
+67,30 feet,cube,30
 68,10 feet,,
-69,30 feet,cube, 5
+69,30 feet,cube,5
 70,Touch,,
 71,120 feet,,
-72,60 feet,sphere, 15
+72,60 feet,sphere,15
 73,Touch,,
-74,60 feet,sphere, 60
+74,60 feet,sphere,60
 75,Touch,,
-76,150 feet,sphere, 20
+76,150 feet,sphere,20
 77,60 feet,,
-78,Self,sphere, 30
-79,Self,sphere, 30
-80,Self,sphere, 30
+78,Self,sphere,30
+79,Self,sphere,30
+80,Self,sphere,30
 81,Self,,
 82,500 feet,,
 83,Self,,
-84,60 feet,cube, 10
+84,60 feet,cube,10
 85,Self,,
 86,120 feet,,
 87,Self,,
@@ -92,20 +92,20 @@
 92,60 feet,,
 93,Special,,
 94,30 feet,,
-95,500 feet,sphere, 100
+95,500 feet,sphere,100
 96,120 feet,,
 97,Touch,,
 98,30 feet,,
-99,90 feet,cube, 20
+99,90 feet,cube,20
 100,60 feet,,
 101,Self,,
 102,Self,,
 103,Self,,
 104,120 feet,,
-105,60 feet,cube, 20
+105,60 feet,cube,20
 106,30 feet,,
 107,Self,,
-108,Self,cone, 30
+108,Self,cone,30
 109,60 feet,,
 110,150 feet,,
 111,10 feet,,
@@ -114,40 +114,40 @@
 114,120 feet,,
 115,60 feet,,
 116,120 feet,,
-117,Self,sphere, 5
-118,150 feet,cube, 100
-119,150 feet,sphere, 20
+117,Self,sphere,5
+118,150 feet,cube,100
+119,150 feet,sphere,20
 120,Self,,
-121,60 feet,cylinder, 40
+121,60 feet,cylinder,40
 122,60 feet,,
 123,60 feet,,
 124,30 feet,,
 125,Touch,,
-126,120 feet,sphere, 20
-127,Touch,cube, 40000
-128,100 feet,cube, 20
+126,120 feet,sphere,20
+127,Touch,cube,40000
+128,100 feet,cube,20
 129,Touch,,
 130,Touch,,
-131,300 feet,sphere, 60
+131,300 feet,sphere,60
 132,Touch,,
 133,60 feet,,
 134,60 feet,,
 135,Touch,,
 136,30 feet,,
 137,Self,,
-138,Self,sphere, 10
+138,Self,sphere,10
 139,Touch,,
 140,Touch,,
-141,60 feet,cube, 10
+141,60 feet,cube,10
 142,Touch,,
 143,Touch,,
-144,30 feet,cylinder, 10
-145,Touch,cube, 2500
+144,30 feet,cylinder,10
+145,Touch,cube,2500
 146,Touch,,
 147,120 feet,,
-148,Self,line, 60
-149,Touch,sphere, 60
-150,300 feet,cube, 150
+148,Self,line,60
+149,Touch,sphere,60
+150,300 feet,cube,150
 151,60 feet,,
 152,30 feet,,
 153,60 feet,,
@@ -159,16 +159,16 @@
 159,30 feet,,
 160,90 feet,,
 161,60 feet,,
-162,Self,sphere, 30
+162,Self,sphere,30
 163,90 feet,,
 164,120 feet,,
-165,300 feet,cylinder, 20
+165,300 feet,cylinder,20
 166,Touch,,
 167,Touch,,
 168,30 feet,,
-169,150 feet,sphere, 20
+169,150 feet,sphere,20
 170,Touch,,
-171,300 feet,sphere, 20
+171,300 feet,sphere,20
 172,Touch,,
 173,Touch,,
 174,30 feet,,
@@ -178,7 +178,7 @@
 178,Touch,,
 179,60 feet,,
 180,Touch,,
-181,Self,line, 100
+181,Self,line,100
 182,Self,,
 183,Self,,
 184,Self,,
@@ -190,9 +190,9 @@
 190,120 feet,,
 191,30 feet,,
 192,Touch,,
-193,300 feet,cube, 5
+193,300 feet,cube,5
 194,120 feet,,
-195,60 feet,sphere, 30
+195,60 feet,sphere,30
 196,60 feet,,
 197,60 feet,,
 198,60 feet,,
@@ -200,16 +200,16 @@
 200,Touch,,
 201,Touch,,
 202,120 feet,,
-203,1 mile,sphere, 40
+203,1 mile,sphere,40
 204,Touch,,
 205,30 feet,,
-206,Sight,cube, 5280
+206,Sight,cube,5280
 207,Self,,
 208,Self,,
 209,Self,,
 210,30 feet,,
-211,120 feet,cylinder, 5
-212,120 feet,cone, 40
+211,120 feet,cylinder,5
+212,120 feet,cone,40
 213,Touch,,
 214,Self,,
 215,30 feet,,
@@ -225,11 +225,11 @@
 225,60 feet,,
 226,30 feet,,
 227,10 feet,,
-228,Self,cone, 60
-229,60 feet,line, 90
-230,120 feet,cube, 100
+228,Self,cone,60
+229,60 feet,line,90
+230,120 feet,cube,100
 231,Self,,
-232,120 feet,cube, 30
+232,120 feet,cube,30
 233,500 miles,,
 234,Touch,,
 235,Touch,,
@@ -244,7 +244,7 @@
 244,30 feet,,
 245,Touch,,
 246,Touch,,
-247,100 feet,cylinder, 50
+247,100 feet,cylinder,50
 248,Touch,,
 249,Touch,,
 250,60 feet,,
@@ -257,41 +257,41 @@
 257,Unlimited,,
 258,Touch,,
 259,Self,,
-260,60 feet,sphere, 10
+260,60 feet,sphere,10
 261,Self,,
 262,60 feet,,
 263,Touch,,
 264,Touch,,
-265,120 feet,sphere, 20
-266,60 feet,cube, 15
+265,120 feet,sphere,20
+266,60 feet,cube,15
 267,Touch,,
-268,90 feet,sphere, 20
-269,150 feet,cylinder, 40
-270,120 feet,cube, 40
+268,90 feet,sphere,20
+269,150 feet,cylinder,40
+270,120 feet,cube,40
 271,Touch,,
 272,Self,,
 273,10 feet,,
-274,Self,sphere, 30
+274,Self,sphere,30
 275,Touch,,
-276,150 feet,cylinder, 20
+276,150 feet,cylinder,20
 277,Self,,
 278,60 feet,,
-279,90 feet,sphere, 20
+279,90 feet,sphere,20
 280,Touch,,
 281,Touch,,
-282,Sight,sphere, 360
+282,Sight,sphere,360
 283,30 feet,,
-284,Self,line, 60
-285,150 feet,cylinder, 60
-286,Touch,cube, 10
-287,60 feet,sphere, 30
+284,Self,line,60
+285,150 feet,cylinder,60
+286,Touch,cube,10
+287,60 feet,sphere,30
 288,30 feet,,
-289,10 feet,cube, 10
-290,10 feet,sphere, 10
+289,10 feet,cube,10
+290,10 feet,sphere,10
 291,30 feet,,
-292,Self,cube, 15
+292,Self,cube,15
 293,Self,,
-294,Self,sphere, 10
+294,Self,sphere,10
 295,Touch,,
 296,10 feet,,
 297,Self,,
@@ -302,18 +302,18 @@
 302,60 feet,,
 303,Self,,
 304,60 feet,,
-305,120 feet,line, 60
+305,120 feet,line,60
 306,120 feet,,
-307,120 feet,sphere, 10
+307,120 feet,sphere,10
 308,120 feet,,
-309,120 feet,line, 60
+309,120 feet,line,60
 310,Touch,,
 311,30 feet,,
 312,30 feet,,
-313,60 feet,cube, 20
-314,120 feet,sphere, 30
+313,60 feet,cube,20
+314,120 feet,sphere,30
 315,30 feet,,
-316,120 feet,line, 50
+316,120 feet,line,50
 317,Self,,
-318,5 feet,sphere, 5
-319,60 feet,sphere, 15
+318,5 feet,sphere,5
+319,60 feet,sphere,15

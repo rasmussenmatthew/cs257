@@ -23,13 +23,15 @@ def make_spells_table():
             duration = row[10]
             concentration = row[11]
             casting_time = row[12]
-            spell_level = row[13]
+            spell_level = int(row[13])
             attack_type = row[14]
             damage_information = row[15]
+            
             school_info = row[16]
             split_string = school_info.split(',')[0]
             split_string = split_string.split(':')
             school = split_string[1]
+            
             classes_info = row[17]
             classes = ''
             split_string = classes_info.split(',')
@@ -72,6 +74,7 @@ def make_spell_measurments_table():
                 split_string = second_half.split(':')
                 effect_range = split_string[1]
                 effect_range = effect_range[:-1]
+                effect_range = int(effect_range)
 
             else:
                 effect_range = None
@@ -97,7 +100,7 @@ def make_weapon_table():
             if "weapon" in row[4]:
                 weapon_name = row[3]
                 cost = row[6]
-                weight = row[7]
+                weight = float(row[7])
                 weapon_category = row[13]
 
                 if row[16] != "":
@@ -167,11 +170,16 @@ def make_weapon_range_table():
 
                     split_string = first_half.split(':')
                     normal_range = split_string[1]
-                    #normal_range = normal_range[2:-1]
+                    normal_range = int(normal_range)
 
                     split_string = second_half.split(':')
                     long_range = split_string[1]
                     long_range = long_range[:-1]
+
+                if long_range == " None":
+                    long_range = None
+                else:
+                    long_range = int(long_range)
 
                 if len(weapon_dict)+1 not in weapon_dict:
                     weapon_dict[len(weapon_dict)+1] = [normal_range, long_range]
@@ -208,11 +216,11 @@ def make_armor_table():
                     cost = cost_quantity + cost_unit
                 else:
                     cost = None
-                weight = int(row[7][:-2])
+                weight = float(row[7])
                 str_minimum = int(row[22][:-2])
                 stealth_disadvantage = row[23]
+
                 armor_class = row[21]
-                armor_category = row[20]
                 if armor_class != "":
                     split_string = armor_class.split(',')
                     first_third = split_string[0]
@@ -221,6 +229,7 @@ def make_armor_table():
 
                     split_string = first_third.split(':')
                     base_armor_class = split_string[1]
+                    base_armor_class = int(base_armor_class)
 
                     split_string = second_third.split(':')
                     dex_bonus = split_string[1]
@@ -231,11 +240,12 @@ def make_armor_table():
                         max_bonus = None
                     else:
                         max_bonus = int(max_bonus)
-                    print (type(max_bonus))
                 else:
                     base_armor_class = None
                     dex_bonus = None
                     max_bonus = None
+
+                armor_category = row[20]
 
                 if armor_name not in armor_dict:
                     armor_dict[armor_name] = [cost, weight, str_minimum, stealth_disadvantage, base_armor_class, dex_bonus, max_bonus, armor_category] 
@@ -270,7 +280,7 @@ def make_tools_table():
                     cost = cost_quantity + cost_unit
                 else:
                     cost = None
-                weight = int(row[7][:-2])
+                weight = float(row[7])
                 tool_category = row[10]
                 tool_description = row[9]
                 tool_description = tool_description[1:-1]
@@ -307,10 +317,20 @@ def make_gear_table():
                     cost = cost_quantity + cost_unit
                 else:
                     cost = None
-                weight = row[7][:-2]
+
+                weight = row[7]
+                if weight == "":
+                    weight = None
+                else:
+                    weight = float(weight)
                 gear_description = row[9]
                 gear_description = gear_description[1:-1]
-                gear_quantity = row[12][:-2]
+                gear_quantity = row[12]
+
+                if gear_quantity == "":
+                    gear_quantity = None
+                else:
+                    gear_quantity = int(row[12][:-2])
                 
                 if gear_name not in gear_dict:
                     gear_dict[gear_name] = [cost, weight, gear_description, gear_quantity]
@@ -345,7 +365,12 @@ def make_mounts_table():
                     cost = cost_quantity + cost_unit
                 else:
                     cost = None
-                weight = row[7][:-2]
+                weight = row[7]
+                if weight == "":
+                    weight = None
+                else:
+                    weight = float(weight)
+                    
                 vehicle_category = row[11]
                 speed = row[25]
                 speed = speed[1:-1]

@@ -8,7 +8,7 @@ CREATE TABLE public.weapons(
     id integer,
     name text,
     cost text,
-    weight integer,
+    weight real,
     weapon_category text,
     damage_die text,
     damage_type text,
@@ -25,7 +25,7 @@ CREATE TABLE public.weapon_range(
 CREATE TABLE public.armor(
     name text,
     cost text,
-    weight integer,
+    weight real,
     str_minimum integer,
     stealth_disadvantage boolean,
     base_armor_class integer,
@@ -37,7 +37,7 @@ CREATE TABLE public.armor(
 CREATE TABLE public.tools(
     name text,
     cost text,
-    weight integer,
+    weight real,
     description text,
     tool_category text
 );
@@ -45,15 +45,15 @@ CREATE TABLE public.tools(
 CREATE TABLE public.adventuring_gear(
     name text,
     cost text,
-    weight text,
+    weight real,
     description text,
-    quantity text
+    quantity integer
 );
 
 CREATE TABLE public.mounts(
     name text,
     cost text,
-    weight text,
+    weight real,
     vehicle_category text,
     speed text,
     capacity text
