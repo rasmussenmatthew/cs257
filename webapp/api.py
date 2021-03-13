@@ -25,7 +25,7 @@ def get_spells():
 
     try:
         cursor = connection.cursor()
-        query = 'SELECT spell_name, spell_description, components, ritual FROM spells LIMIT 10'
+        query = 'SELECT spell_name, spell_level, casting_time, ritual FROM spells'
         cursor.execute(query)
     except Exception as e:
         print(e)
@@ -33,14 +33,10 @@ def get_spells():
 
     spells_list = []
     for row in cursor:
-        spells_dictionary = {'spell_name' : row[0], 'spell_description' : row[1], 'components' : row[2], 'ritual' : row[3]}
+        spells_dictionary = {'spell_name' : row[0], 'spell_level' : row[1], 'casting_time' : row[2], 'ritual' : row[3]}
         spells_list.append(spells_dictionary)
         
     connection.close()
-    '''
-    spells_list = [{'spell_name':'acid arrow', 'spell_description':'fire an acid arrow', 'components':'[v,s]', 'ritual':'FALSE'},
-                    {'spell_name':'fireball', 'spell_description':'giant exploding ball of fire', 'components':'[v,s]', 'ritual':'FALSE'}]
-    '''
     return json.dumps(spells_list)
 
 @api.route('/spells/classes/<class_name>')

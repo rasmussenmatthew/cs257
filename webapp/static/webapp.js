@@ -57,6 +57,7 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
+
 $(document).ready( function() {
     var baseurl = getAPIBaseURL();
     var xmlhttp = new XMLHttpRequest();
@@ -68,8 +69,8 @@ $(document).ready( function() {
                 data : spell,
                 'columns':[
                     {'data':'spell_name'},
-                    {'data':'spell_description'},
-                    {'data':'components'},
+                    {'data':'spell_level'},
+                    {'data':'casting_time'},
                     {'data':'ritual'}
                 ]
             });
@@ -78,6 +79,15 @@ $(document).ready( function() {
     xmlhttp.send();     
 });
 
+/*
+$(document).ready( function() {
+    var baseurl = getAPIBaseURL() + '/spells';
+    $('#example').DataTable( {
+        ajax : baseurl,
+    })
+    
+}); 
+*/
 function get_spells() {
     var url = getAPIBaseURL() + '/spells';
 
@@ -91,8 +101,8 @@ function get_spells() {
         for (var k = 0; k < spells.length; k++) {
             var spell = spells[k];
             listBody += '<li>' + spell['spell_name']
-                      + ', ' + spell['spell_description']
-                      + '-' + spell['components']
+                      + ', ' + spell['spell_level']
+                      + '-' + spell['casting_time']
                       + ', ' + spell['ritual']
                       + '</li>\n';
         }
@@ -122,8 +132,8 @@ function get_spells_for_class(class_name) {
         for (var k = 0; k < spells.length; k++) {
             var spell = spells[k];
             listBody += '<li>' + spell['spell_name']
-                      + ', ' + spell['spell_description']
-                      + '-' + spell['components']
+                      + ', ' + spell['spell_level']
+                      + '-' + spell['casting_time']
                       + ', ' + spell['ritual']
                       + '</li>\n';
         }
