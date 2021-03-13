@@ -58,9 +58,25 @@ function getAPIBaseURL() {
 }
 
 $(document).ready( function() {
-    $('#example').DataTable( {
-        "ajax": getAPIBaseURL() + '/spells';
-}
+    var baseurl = getAPIBaseURL();
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', baseurl+'/spells', true);
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+            var spell = JSON.parse(xmlhttp.responseText);
+            $('#example').DataTable( {
+                data : spell,
+                'columns':[
+                    {'data':'spell_name'},
+                    {'data':'spell_description'},
+                    {'data':'components'},
+                    {'data':'ritual'}
+                ]
+            });
+        }
+    }  
+    xmlhttp.send();     
+});
 
 function get_spells() {
     var url = getAPIBaseURL() + '/spells';
