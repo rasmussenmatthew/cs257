@@ -57,12 +57,18 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
+$(document).ready( function() {
+    $('#example').DataTable( {
+        "ajax": getAPIBaseURL() + '/spells';
+}
+
 function get_spells() {
     var url = getAPIBaseURL() + '/spells';
 
     fetch(url, {method: 'get'})
 
     .then((response) => response.json())
+
 
     .then(function(spells) {
         var listBody = '';
