@@ -83,13 +83,15 @@ $(document).ready( function() {
     var baseurl = getAPIBaseURL() + '/spells/classes/';
     var api_list = ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'sorcerer', 'wizard', 'warlock']
     var xmlhttp = new XMLHttpRequest();
-    for (name in api_list){
+    for (name of api_list){
+        console.log(typeof name);
         xmlhttp.open('GET', baseurl+name, true);
         xmlhttp.onreadystatechange = function(){
             if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                 console.log(name);
                 var spell = JSON.parse(xmlhttp.responseText);
-                $('#' + name).DataTable( {
+                console.log(spell);
+                $('#'+name).DataTable( {
                     data : spell,
                     'columns':[
                         {'data':'spell_name'},
@@ -101,6 +103,9 @@ $(document).ready( function() {
             }
         }  
         xmlhttp.send();
+        if ($.fn.dataTable.isDataTable('#'+name)){
+           console.log(name);
+        }
     }     
 });
 
