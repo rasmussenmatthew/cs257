@@ -81,11 +81,12 @@ $(document).ready( function() {
 
 $(document).ready( function() {
     var baseurl = getAPIBaseURL() + '/spells/classes/';
-    var api_list = ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'sorcerer', 'wizard', 'warlock']
-    var xmlhttp = new XMLHttpRequest();
-    for (name of api_list){
-        console.log(typeof name);
+    var api_list = ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'sorcerer', 'wizard', 'warlock'];
+    for (var name of api_list){
+        var xmlhttp = new XMLHttpRequest()
+        console.log(name);
         xmlhttp.open('GET', baseurl+name, true);
+        console.log(baseurl+name);
         xmlhttp.onreadystatechange = function(){
             if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                 console.log(name);

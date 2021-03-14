@@ -60,10 +60,7 @@ def get_spells_for_class(class_name):
     except Exception as e:
         print(e)
         exit()
-    '''
-    spells_list = [{'spell_name':'acid arrow', 'spell_description':'fire an acid arrow', 'components':'[v,s]', 'ritual':'FALSE'},
-                    {'spell_name':'fireball', 'spell_description':'giant exploding ball of fire', 'components':'[v,s]', 'ritual':'FALSE'}]
-    '''
+        
     return json.dumps(spells_list)
 
 @api.route('/equipment/<equipment_type>')
