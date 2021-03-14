@@ -7,15 +7,15 @@
  */
 
 
-document.getElementById('spells').addEventListener('click', get_spells);
-document.getElementById('bard').addEventListener('click', function() {get_spells_for_class('Bard')});
-document.getElementById('cleric').addEventListener('click', function() {get_spells_for_class('Cleric')});
-document.getElementById('druid').addEventListener('click', function() {get_spells_for_class('Druid')});
-document.getElementById('paladin').addEventListener('click', function() {get_spells_for_class('Paladin')});
-document.getElementById('ranger').addEventListener('click', function() {get_spells_for_class('Ranger')});
-document.getElementById('sorcerer').addEventListener('click', function() {get_spells_for_class('Sorcerer')});
-document.getElementById('wizard').addEventListener('click', function() {get_spells_for_class('Wizard')});
-document.getElementById('warlock').addEventListener('click', function() {get_spells_for_class('Warlock')});
+document.getElementById('Spells').addEventListener('click', get_spells);
+document.getElementById('Bard').addEventListener('click', function() {get_spells_for_class('Bard')});
+document.getElementById('Cleric').addEventListener('click', function() {get_spells_for_class('Cleric')});
+document.getElementById('Druid').addEventListener('click', function() {get_spells_for_class('Druid')});
+document.getElementById('Paladin').addEventListener('click', function() {get_spells_for_class('Paladin')});
+document.getElementById('Ranger').addEventListener('click', function() {get_spells_for_class('Ranger')});
+document.getElementById('Sorcerer').addEventListener('click', function() {get_spells_for_class('Sorcerer')});
+document.getElementById('Wizard').addEventListener('click', function() {get_spells_for_class('Wizard')});
+document.getElementById('Warlock').addEventListener('click', function() {get_spells_for_class('Warlock')});
 document.getElementById('equipment').addEventListener('click', get_equipment);
 
 var sideBar = document.getElementById("side_bar");
@@ -23,11 +23,21 @@ var bttns = sideBar.getElementsByClassName("bttn");
 
 for (var i = 0; i < bttns.length; i++) {
     bttns[i].addEventListener('click', function () {
+        //checking what button is active
         var current = document.getElementsByClassName("active");
         if (current.length > 0) {
+            var button_id = current[0].id;
+            var current_table = document.getElementById(button_id +'_table');
+            current_table.className += " hidden";
+            
             current[0].className = current[0].className.replace(" active", "");
         }
         this.className += " active";
+        
+        //showing/hiding the correct table
+        var new_shown_table = document.getElementById(this.id +'_table');
+        new_shown_table.className.replace(" hidden", "");
+        
     });
 }
 
@@ -154,17 +164,14 @@ function get_spells() {
         var baseurl = getAPIBaseURL();
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open('GET', baseurl+'/spells', true);
-        if ($.fn.dataTable.isDataTable('#example')){
+        if ($.fn.dataTable.isDataTable('#Spells')){
             //pass        
-            var table = document.getElementsByClassName("table table-striped table-bordered")[0];
-            var tableId = table.id;
-            tableId = hide;
         } 
         else{
             xmlhttp.onreadystatechange = function(){
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                     var spell = JSON.parse(xmlhttp.responseText);
-                    $('#example').DataTable( {
+                    $('#Spells_table').DataTable( {
                         data : spell,
                         'columns':[
                             {'data':'spell_name'},
@@ -236,7 +243,7 @@ function get_spells_for_class(class_name) {
             xmlhttp.onreadystatechange = function(){
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                     var spell = JSON.parse(xmlhttp.responseText);
-                    $('#'+class_name).DataTable( {
+                    $('#'+class_name+'_table').DataTable( {
                         data : spell,
                         'columns':[
                             {'data':'spell_name'},

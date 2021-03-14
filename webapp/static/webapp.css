@@ -75,3 +75,11 @@ li {
 h3 {
     margin: 10px;
 }
+
+.hidden {
+    display: none;
+}
+
+.shown {
+    display: inline;
+}
