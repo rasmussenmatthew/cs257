@@ -57,7 +57,6 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
-/*
 $(document).ready( function() {
     var baseurl = getAPIBaseURL();
     var xmlhttp = new XMLHttpRequest();
@@ -78,7 +77,32 @@ $(document).ready( function() {
     }  
     xmlhttp.send();     
 });
-*/
+
+
+$(document).ready( function() {
+    var baseurl = getAPIBaseURL() + '/spells/classes/';
+    var api_list = ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'sorcerer', 'wizard', 'warlock']
+    var xmlhttp = new XMLHttpRequest();
+    for (name in api_list){
+        xmlhttp.open('GET', baseurl+name, true);
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                console.log(name);
+                var spell = JSON.parse(xmlhttp.responseText);
+                $('#' + name).DataTable( {
+                    data : spell,
+                    'columns':[
+                        {'data':'spell_name'},
+                        {'data':'spell_level'},
+                        {'data':'casting_time'},
+                        {'data':'ritual'}
+                    ]
+                });
+            }
+        }  
+        xmlhttp.send();
+    }     
+});
 
 /*
 function get_spells() {
@@ -120,26 +144,34 @@ function get_spells() {
     fetch(url, {method: 'get'})
 
     .then((response) => response.json())
-
-
+    
     .then(function(spells) {
         var baseurl = getAPIBaseURL();
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open('GET', baseurl+'/spells', true);
-        xmlhttp.onreadystatechange = function(){
-        if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-            var spell = JSON.parse(xmlhttp.responseText);
-            $('#example').DataTable( {
-                data : spell,
-                'columns':[
-                    {'data':'spell_name'},
-                    {'data':'spell_level'},
-                    {'data':'casting_time'},
-                    {'data':'ritual'}
-                ]
-            });
+        if ($.fn.dataTable.isDataTable('#example')){
+            //pass        
+            var table = document.getElementsByClassName("table table-striped table-bordered")[0];
+            var tableId = table.id;
+            tableId = hide;
+ 
+        } 
+        else{
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                    var spell = JSON.parse(xmlhttp.responseText);
+                    $('#example').DataTable( {
+                        data : spell,
+                        'columns':[
+                            {'data':'spell_name'},
+                            {'data':'spell_level'},
+                            {'data':'casting_time'},
+                            {'data':'ritual'}
+                        ]
+                    });
+                }
+            }  
         }
-    }  
     xmlhttp.send(); 
         }
     )
@@ -206,9 +238,10 @@ function get_spells_for_class(class_name) {
                 ]
             });
         }
-        var table = document.getElementsByClassName("table table-striped table-bordered")[0];
-        var tableId = table.id;
-        tableId = '#' + class_name; 
+        //var table = document.getElementsByClassName("table table-striped table-bordered")[0];
+        //var tableId = table.id;
+        //tableId = class_name;
+        //console.log(tableId); 
     }  
     xmlhttp.send(); 
         }

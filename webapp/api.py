@@ -43,9 +43,9 @@ def get_spells():
 def get_spells_for_class(class_name):
     # Pay special attention to quotes! Originally not working when using single quotes on outside and double quotes for like clause
     like_arguments = '%' + class_name + '%'
-    query = '''SELECT spell_name, spell_description, components, ritual 
+    query = '''SELECT spell_name, spell_level, casting_time, ritual 
                FROM spells 
-               WHERE classes LIKE %s LIMIT 10 ''' 
+               WHERE classes LIKE %s''' 
     spells_list = []
 
     try:
@@ -53,7 +53,7 @@ def get_spells_for_class(class_name):
         cursor = connection.cursor()
         cursor.execute(query, [like_arguments])
         for row in cursor:
-            spells_dictionary = {'spell_name' : row[0], 'spell_description' : row[1], 'components' : row[2], 'ritual' : row[3]}
+            spells_dictionary = {'spell_name' : row[0], 'spell_level' : row[1], 'casting_time' : row[2], 'ritual' : row[3]}
             spells_list.append(spells_dictionary)
         cursor.close()
         connection.close()
