@@ -10,7 +10,6 @@
     <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <title>CS 257: Software Design</title>
 </head>
 
@@ -36,6 +35,15 @@
         </div>
         <div class = "content">
             <h3 id="content_label"> Welcome to our DnD Page! </h3>
+            <p> This project was meant to be a tool for new and experience DnD players alike. 
+                We wanted it to be a quick and easy way to access information about a variety of 
+                aspects of the game. Through some trial and error we realized that we should
+                focus our efforts on making spells the primary focus. With that, we have made
+                tables of all the spells in the 5th Edition Player's Handbook as well as tables
+                that split the spells by classes. These tables can be filtered and searched through.
+                You also have the ability to click the name of a spell and see more information about
+                it. This information is not the prettiest but is accurate. 
+            </p>
             <div id="Spells_visibility" class="hidden">   
                 <table id='Spells_table' class='table table-striped table-bordered'>
                     <thead>

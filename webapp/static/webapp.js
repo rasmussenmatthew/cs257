@@ -6,7 +6,6 @@
  * A little bit of Javascript for the web app sample for CS257.
  */
 
-
 document.getElementById('Spells').addEventListener('click', get_spells);
 document.getElementById('Bard').addEventListener('click', function() {get_spells_for_class('Bard')});
 document.getElementById('Cleric').addEventListener('click', function() {get_spells_for_class('Cleric')});
@@ -86,10 +85,8 @@ function get_spells() {
         if (spellListElement) {
             spellListElement.innerHTML = listBody;
         }
- 
         }
     )
-
     .catch(function(error) {
         console.log(error);
     });
@@ -118,8 +115,9 @@ function get_spells_for_class(class_name) {
                         'columns':[
                             {'data':'spell_name',
                              'render':function(data){
-                              data = '<a href=/api/spells/classes/bard>' + data + '</a>';
-                              return data;
+                                var data_url = data.replace(" ", "%20");
+                                data = '<a href="/api/spells/'+ data_url + '"' + 'target = "_blank"' + '>' + data + '</a>';
+                                return data;
                             }
                             },
                             {'data':'spell_level'},
@@ -137,10 +135,8 @@ function get_spells_for_class(class_name) {
         if (spellListElement) {
             spellListElement.innerHTML = listBody;
         }
- 
         }
     )
-
     .catch(function(error) {
         console.log(error);
     });
@@ -162,9 +158,7 @@ function get_spell_information(spell_name){
         for (var k = 1; k < spell.length; k++) {
             var spell_element = spell[k];
             var current_header = header[k];
-            table += '<tr><th>'+current_header+'</th><td>'+spell_element+'</td></tr>'
-
-            
+            table += '<tr><th>'+current_header+'</th><td>'+spell_element+'</td></tr>'    
         }
         var contentLabelElement = document.getElementById('content_label');
         contentLabelElement.innerHTML = spell[0];
@@ -172,9 +166,6 @@ function get_spell_information(spell_name){
         if (tableElement) {
             spellListElement.innerHTML = table;
         }
- 
         }
     )
-
 }
-
