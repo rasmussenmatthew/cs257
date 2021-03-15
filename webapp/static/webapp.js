@@ -272,25 +272,17 @@ function get_spell_information(spell_name){
 
     .then((response) => response.json())
 
-    .then(function(spells) {
+    .then(function(spell) {
         var baseurl = getAPIBaseURL();
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('GET', url, true);
-        xmlhttp.onreadystatechange = function(){
-            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                var spell = JSON.parse(xmlhttp.responseText);
-                $('#'+class_name+'_table').DataTable( {
-                    data : spell,
-                    'columns':[
-                        {'data':'spell_name'},
-                        {'data':'spell_level'},
-                        {'data':'casting_time'},
-                        {'data':'ritual'}
-                    ]
-                });
-            }
-        }  
-        xmlhttp.send(); 
+        var Body = '';
+        for (var k = 0; k < spell.length; k++) {
+            var spell_element = spell[k];
+            listBody += '<li>' + spell['spell_name']
+                      + ', ' + spell['spell_level']
+                      + '-' + spell['casting_time']
+                      + ', ' + spell['ritual']
+                      + '</li>\n';
+        }
         var contentLabelElement = document.getElementById('content_label');
         contentLabelElement.innerHTML = class_name + ' spells';
         var spellListElement = document.getElementById('spell_list');
