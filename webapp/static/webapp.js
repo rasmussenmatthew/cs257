@@ -16,7 +16,6 @@ document.getElementById('Ranger').addEventListener('click', function() {get_spel
 document.getElementById('Sorcerer').addEventListener('click', function() {get_spells_for_class('Sorcerer')});
 document.getElementById('Wizard').addEventListener('click', function() {get_spells_for_class('Wizard')});
 document.getElementById('Warlock').addEventListener('click', function() {get_spells_for_class('Warlock')});
-document.getElementById('equipment').addEventListener('click', get_equipment);
 
 var sideBar = document.getElementById("side_bar");
 var bttns = sideBar.getElementsByClassName("bttn");
@@ -67,8 +66,9 @@ function get_spells() {
                         'columns':[
                             {'data':'spell_name',
                              'render':function(data){
-                              data = '<a href=/api/spells/classes/bard>' + data + '</a>';
-                              return data;
+                                var data_url = data.replace(" ", "%20");
+                                data = '<a href="/api/spells/'+ data_url + '"' + 'target = "_blank"' + '>' + data + '</a>';
+                                return data;
                             }
                             },
                             {'data':'spell_level'},
@@ -178,32 +178,3 @@ function get_spell_information(spell_name){
 
 }
 
-function get_equipment() {
-    var url = getAPIBaseURL() + '/equipment';
-
-    fetch(url, {method: 'get'})
-
-    .then((response) => response.json())
-
-    .then(function(equipments) {
-        var listBody = '';
-        for (var k = 0; k < equipments.length; k++) {
-            var equipment = equipments[k];
-            listBody += '<li>' + equipment['tool_name']
-                      + ', ' + equipment['tool_cost']
-                      + ', ' + equipment['tool_weight']
-                      + '</li>\n';
-        }
-        var contentLabelElement = document.getElementById('content_label');
-        contentLabelElement.innerHTML = 'Equipment';
-        var spellListElement = document.getElementById('spell_list');
-        if (spellListElement) {
-            spellListElement.innerHTML = listBody;
-        }
-    })
-
-    .catch(function(error) {
-        console.log(error);
-    });
-
-}
