@@ -17,7 +17,7 @@
 <body>
     <div class = "wrapper">
         <div class = "header">
-            <h3>DnD Spell/Equipment Searcher</h3>
+            <h3><a href="/">DnD Spell/Equipment Searcher</a></h3>
             <div class = "search_bar">
                 <form class="d-flex">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -42,97 +42,115 @@
             </ul>
         </div>
         <div class = "content">
-            <h3 id="content_label"> Welcome to our DnD Page! </h3>   
-            <table id='Spells_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
-            <table id='Bard_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
-            <table id='Cleric_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
-            <table id='Druid_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
-            <table id='Paladin_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
-            <table id='Ranger_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
-            <table id='Sorcerer_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
-            <table id='Wizard_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
-            <table id='Warlock_table' class='table table-striped table-bordered hidden'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Spell Level</th>
-                        <th>Casting Time</th>
-                        <th>Ritual</th>
-                    </tr>
-                </thead>
-            </table>
+            <h3 id="content_label"> Welcome to our DnD Page! </h3>
+            <div id="Spells_visibility" class="hidden">   
+                <table id='Spells_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="Bard_visibility" class="hidden">
+                <table id='Bard_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="Cleric_visibility" class="hidden">
+                <table id='Cleric_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="Druid_visibility" class="hidden">
+                <table id='Druid_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table> 
+            </div>
+            <div id="Paladin_visibility" class="hidden">
+                <table id='Paladin_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="Ranger_visibility" class="hidden">
+                <table id='Ranger_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="Sorcerer_visibility" class="hidden">
+                <table id='Sorcerer_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="Wizard_visibility" class="hidden">
+                <table id='Wizard_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="Warlock_visibility" class="hidden">
+                <table id='Warlock_table' class='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Spell Level</th>
+                            <th>Casting Time</th>
+                            <th>Ritual</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
 
 
 

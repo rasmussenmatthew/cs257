@@ -27,39 +27,16 @@ for (var i = 0; i < bttns.length; i++) {
         var current = document.getElementsByClassName("active");
         if (current.length > 0) {
             var button_id = current[0].id;
-            var current_table = document.getElementById(button_id +'_table');
-            current_table.className += " hidden";
-            
             current[0].className = current[0].className.replace(" active", "");
+            var visible_table = document.getElementById(button_id + '_visibility');
+            visible_table.classList.add("hidden");
         }
         this.className += " active";
         
-        //showing/hiding the correct table
-        var new_shown_table = document.getElementById(this.id +'_table');
-        new_shown_table.className.replace(" hidden", "");
-        
-    });
-}
-
-
-function get_class() {
-    var pathname = window.location.pathname;
-    var paths = pathname.split('/');
-    for (path in paths) {
-        if (path == 'api'){
-            continue;
-        }
-        else if (path == 'spells') {
-            continue;   
-        }
-        else if (path == 'classes') {
-            continue;
-        }
-        else {
-            var class_name = path;
-        }
-    }
-    return class_name;
+        //showing the correct table
+        var new_visible_table = document.getElementById(this.id+'_visibility');
+        new_visible_table.classList.remove("hidden");
+   });
 }
 
 function getAPIBaseURL() {
@@ -162,19 +139,24 @@ function get_spells() {
     
     .then(function(spells) {
         var baseurl = getAPIBaseURL();
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('GET', baseurl+'/spells', true);
-        if ($.fn.dataTable.isDataTable('#Spells')){
+        if ($.fn.dataTable.isDataTable('#Spells_table')){
             //pass        
         } 
         else{
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open('GET', baseurl+'/spells', true);
             xmlhttp.onreadystatechange = function(){
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                     var spell = JSON.parse(xmlhttp.responseText);
                     $('#Spells_table').DataTable( {
                         data : spell,
                         'columns':[
-                            {'data':'spell_name'},
+                            {'data':'spell_name',
+                             'render':function(data){
+                              data = '<a href=/api/spells/classes/bard>' + data + '</a>';
+                              return data;
+                            }
+                            },
                             {'data':'spell_level'},
                             {'data':'casting_time'},
                             {'data':'ritual'}
@@ -182,8 +164,15 @@ function get_spells() {
                     });
                 }
             }  
-        }
     xmlhttp.send(); 
+        }
+        var contentLabelElement = document.getElementById('content_label');
+        contentLabelElement.innerHTML = 'All spells';
+        var spellListElement = document.getElementById('spell_list');
+        if (spellListElement) {
+            spellListElement.innerHTML = listBody;
+        }
+ 
         }
     )
 
@@ -234,19 +223,24 @@ function get_spells_for_class(class_name) {
 
     .then(function(spells) {
         var baseurl = getAPIBaseURL();
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('GET', url, true);
-        if ($.fn.dataTable.isDataTable('#' + class_name)){
+        if ($.fn.dataTable.isDataTable('#' + class_name + '_table')){
             //pass         
         } 
         else{
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open('GET', url, true);
             xmlhttp.onreadystatechange = function(){
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
                     var spell = JSON.parse(xmlhttp.responseText);
                     $('#'+class_name+'_table').DataTable( {
                         data : spell,
                         'columns':[
-                            {'data':'spell_name'},
+                            {'data':'spell_name',
+                             'render':function(data){
+                              data = '<a href=/api/spells/classes/bard>' + data + '</a>';
+                              return data;
+                            }
+                            },
                             {'data':'spell_level'},
                             {'data':'casting_time'},
                             {'data':'ritual'}
@@ -254,8 +248,15 @@ function get_spells_for_class(class_name) {
                     });
                 }
             }  
-        }
     xmlhttp.send(); 
+        }
+        var contentLabelElement = document.getElementById('content_label');
+        contentLabelElement.innerHTML = class_name + ' spells';
+        var spellListElement = document.getElementById('spell_list');
+        if (spellListElement) {
+            spellListElement.innerHTML = listBody;
+        }
+ 
         }
     )
 
@@ -264,6 +265,43 @@ function get_spells_for_class(class_name) {
     });
 }
 
+function get_spell_information(spell_name){
+    var url = getAPIBaseURL() + '/spells/' +  spell_name;
+
+    fetch(url, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(spells) {
+        var baseurl = getAPIBaseURL();
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('GET', url, true);
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                var spell = JSON.parse(xmlhttp.responseText);
+                $('#'+class_name+'_table').DataTable( {
+                    data : spell,
+                    'columns':[
+                        {'data':'spell_name'},
+                        {'data':'spell_level'},
+                        {'data':'casting_time'},
+                        {'data':'ritual'}
+                    ]
+                });
+            }
+        }  
+        xmlhttp.send(); 
+        var contentLabelElement = document.getElementById('content_label');
+        contentLabelElement.innerHTML = class_name + ' spells';
+        var spellListElement = document.getElementById('spell_list');
+        if (spellListElement) {
+            spellListElement.innerHTML = listBody;
+        }
+ 
+        }
+    )
+
+}
 
 function get_equipment() {
     var url = getAPIBaseURL() + '/equipment';

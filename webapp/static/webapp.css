@@ -21,7 +21,7 @@
 .header {
     grid-column: 1 / 4;
     grid-row: 1;
-    background-color: red;
+    background-color: #b6bfd6;
 }
 
 .content {
@@ -33,38 +33,43 @@
 .side_bar {
     grid-column: 1;
     grid-row: 2 / 4;
-    background-color: blue;
+    background-color: #996aab;
 }
 
-.bttn {
-    background-color: white;
+.btn{
     color: black;
-    border: 2px solid black;
-    border-radius: 12px;
-    padding: 10px 20px;
+    border-color: black;
+}
+.bttn {
+    color: white;
+    background-color: #996aab;
+    border-color: black;
+    border-radius: 5px;
+    border-width: thin;
     text-align: center;
     text-decoration: none;
     display: block;
 }
 
 .active, .bttn:hover {
-    background-color: red;
-    color: black;
-    border: 2px solid red;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 2px rgba(0, 0, 0, 0.64);
 }
 
 a {
-   color: hotpink;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: blue;
 }
 
 ul {
-    list-style-type: none;
+    list-style-type: circle;
     margin: 10px;
-    padding: 5px;
+    padding-left: 20px;
+    padding-bottom: 10px;
 }
 
 
@@ -80,6 +85,3 @@ h3 {
     display: none;
 }
 
-.shown {
-    display: inline;
-}
