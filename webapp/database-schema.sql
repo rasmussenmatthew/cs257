@@ -4,61 +4,6 @@ Matthew Rasmussen
 2/19/2021
 '''
 
-CREATE TABLE public.weapons(
-    id integer,
-    name text,
-    cost text,
-    weight real,
-    weapon_category text,
-    damage_die text,
-    damage_type text,
-    properties text,
-    two_handed_dmg text
-);
-
-CREATE TABLE public.weapon_range(
-    weapon_id integer,
-    normal text,
-    long text
-);
-
-CREATE TABLE public.armor(
-    name text,
-    cost text,
-    weight real,
-    str_minimum integer,
-    stealth_disadvantage boolean,
-    base_armor_class integer,
-    dex_bonus boolean,
-    max_bonus text,
-    armor_catgegory text
-);
-
-CREATE TABLE public.tools(
-    name text,
-    cost text,
-    weight text,
-    description text,
-    tool_category text
-);
-
-CREATE TABLE public.adventuring_gear(
-    name text,
-    cost text,
-    weight text,
-    description text,
-    quantity text
-);
-
-CREATE TABLE public.mounts(
-    name text,
-    cost text,
-    weight text,
-    vehicle_category text,
-    speed text,
-    capacity text
-);
-
 CREATE TABLE public.spells(
     id integer,
     spell_name text,

@@ -90,6 +90,9 @@ def make_spell_measurments_table():
             writer.writerow([key, spell_dict[key][0], spell_dict[key][1], spell_dict[key][2]])
     
 
+'''
+These functions were orginally created with the idea that we would be able to include this data as well, that was not the case.
+
 def make_weapon_table():
     weapon_dict = {}
 
@@ -397,12 +400,7 @@ def make_mounts_table():
         writer = csv.writer(new_csv_file, delimiter=',')
         for key in mounts_dict:
             writer.writerow([key, mounts_dict[key][0], mounts_dict[key][1], mounts_dict[key][2], mounts_dict[key][3], mounts_dict[key][4]])
-
+'''
 make_spells_table()
 make_spell_measurments_table()
-make_weapon_table()
-make_weapon_range_table()
-make_armor_table()
-make_tools_table()
-make_gear_table()
-make_mounts_table()
+
