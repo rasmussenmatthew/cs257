@@ -41,7 +41,7 @@ def get_spells():
 
 @api.route('/spells/<spell_name>')
 def get_spell_information(spell_name):
-    spell_name = spell_name
+    like_arguments = spell_name
     query = '''SELECT * FROM spells WHERE spell_name LIKE %s'''
 
     spells_list = []
@@ -49,7 +49,7 @@ def get_spell_information(spell_name):
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
         cursor = connection.cursor()
-        cursor.execute(query)
+        cursor.execute(query, [like_arguments])
         for row in cursor:
             spells_dictionary = {'spell_name' : row[1], 'spell_description' : row[2], 'higher_level' : row[3], 'components' : row[4], 'material' : row[5], 'ritual' : row[6], 'duration' : row[7], 'concentration' : row[8], 'casting_time' : row[9], 'spell_level' : row[10], 'attack_type' : row[11], 'damage_information' : row[12], 'school' : row[13], 'classes' : row[14], 'dc_information' : row[15], 'heal_at_level' : row[16]}
             spells_list.append(spells_dictionary)
