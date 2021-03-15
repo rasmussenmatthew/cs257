@@ -86,19 +86,38 @@ def get_spells_for_class(class_name):
         
     return json.dumps(spells_list)
 
-@api.route('/equipment/<equipment_type>')
+@api.route('/equipment/')
 def get_equipment():
+    equipment_list = []
+    try:
+        connection = psycopg2.connect(database=database, user=user, password=password)
+        cursor = connection.cursor() 
+        query = '''SELECT weapons.name, weapons.weight, weapons.cost, armor.name, armor.weight, armor.cost, tools.name, tools.weight, tools.cost, 
+                    mounts.name, mounts.weight, mounts.cost, adventuring_gear.name, adventuring_gear.weight, adventuring_gear.cost 
+                    FROM weapons, armor, tools, mounts, adventuring_gear ''' 
+        cursor.execute(query)
+        for row in cursor:
+            equipment_dictionary = {'name' : row[0], 'cost' : row[1], 'weight' : row[2]}
+            equipment_list.append(equipment_dictionary)
+     
+    except Exception as e:
+        print(e)
+        exit()
+    connection.close()
+    return json.dumps(equipment_list)
+
+@api.route('/equipment/<equipment_type>')
+def get_equipment_type():
     equipment_list = []
     try:
         connection = psycopg2.connect(database=database, user=user, password=password)
         cursor = connection.cursor()
         argument = equipment_type 
         query = '''SELECT name, description, weight, cost 
-               FROM %s 
-               LIMIT 10 ''' 
-        cursor.execute(query)
+               FROM %s''' 
+        cursor.execute(query, [argument])
         for row in cursor:
-            equipment_dictionary = {'tool_name' : row[0], 'tool_cost' : row[1], 'tool_weight' : row[2]}
+            equipment_dictionary = {'name' : row[0], 'cost' : row[1], 'weight' : row[2]}
             equipment_list.append(equipment_dictionary)
      
     except Exception as e:
